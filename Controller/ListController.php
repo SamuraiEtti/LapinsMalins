@@ -12,7 +12,7 @@ class ListController {
         if ($crea == $mat && $mat == $cat && $cat == "all") {
             $listCrea = $listAd->listAllCreators();
         } else {
-            $listCrea = $listeAd->listFilteredCreators($crea, $mat, $cat);
+            $listCrea = $listAd->listFilteredCreators($crea, $mat, $cat);
         }
         return $listCrea;
     }

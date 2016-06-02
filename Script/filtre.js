@@ -1,6 +1,8 @@
 $(function () {
 
     $("#selectCrea").change(callFilters);
+    $("#selectMat").change(callFilters);
+    $("#selectCat").change(callFilters);
 
     function listeCreateurs() {
         $.ajax("Controller/filtre.php", {
@@ -12,7 +14,7 @@ $(function () {
                 cat: $("#selectCat option:selected").val()
             },
             success: function (d, s, xhr) {
-                console.log("createur : ", d);
+                $("#selectCrea").html("<option value='all'>Tous</option>");
                 for (var i = 0; i < d.length; i++) {
                     $("#selectCrea").append(
                         $("<option/>").text(d[i]["nom"]).val(d[i]["id"])
@@ -32,7 +34,7 @@ $(function () {
                 cat: $("#selectCat option:selected").val()
             },
             success: function (d, s, xhr) {
-                console.log("matiere : ", d);
+                $("#selectMat").html("<option value='all'>Toutes</option>");
                 for (var i = 0; i < d.length; i++) {
                     $("#selectMat").append(
                         $("<option/>").text(d[i]["nom"]).val(d[i]["id"])
@@ -52,7 +54,7 @@ $(function () {
                 cat: $("#selectCat option:selected").val()
             },
             success: function (d, s, xhr) {
-                console.log("categorie : ", d);
+                $("#selectCat").html("<option value='all'>Toutes</option>");
                 for (var i = 0; i < d.length; i++) {
                     $("#selectCat").append(
                         $("<option/>").text(d[i]["nom"]).val(d[i]["id"])

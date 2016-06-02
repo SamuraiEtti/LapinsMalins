@@ -37,28 +37,27 @@ class CategoryAdapter {
                     . "JOIN produits ON prod_fk_categorie = cat_id "
                     . "JOIN createurs ON prod_fk_createur = cre_id "
                     . "JOIN matieres ON prod_fk_matiere = mat_id "
-                    . "ORDER BY cat_nom "
                     . "WHERE ";
-            $execute = '[';
+            $execute = [];
             if ($cat !== "all") {
                 $sql .= "cat_id = :cat AND ";
-                $execute .= "':cat' => $cat, ";
-            }
+                $execute[':cat'] = $cat;
+            };
             if ($crea !== "all") {
                 $sql .= "cre_id = :crea AND ";
-                $execute .= "':crea' => $crea, "
-            }
+                $execute[':crea'] = $crea;
+            };
             if ($mat !== "all") {
                 $sql .= "mat_id = :mat AND ";
-                $execute .= "':mat' => $mat, "
-            }
-            $sql = substr($sql, 0, strlen($sql)- 4);
-            $execute = substr($execute, 0, strlen($execute) - 2) . "]";
+                $execute[':mat'] = $mat;
+            };
+            $sql = substr($sql, 0, strlen($sql) - 4) . " ORDER BY cat_nom;";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute($execute);
             $this->list = $stmt->fetchAll(PDO::FETCH_CLASS, "Category");
             $this->complete = true;
         }
+        return $this->list;
     }
 
 }
@@ -79,7 +78,7 @@ class CreatorAdapter {
                     . "cre_nom AS nom FROM createurs "
                     . "ORDER BY cre_nom;";
             $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([]);
+            $stmt->execute();
             $this->list = $stmt->fetchAll(PDO::FETCH_CLASS, "Creator");
             $this->complete = true;
         }
@@ -87,7 +86,33 @@ class CreatorAdapter {
     }
 
     function listFilteredCreators($crea, $mat, $cat) {
-        
+        if (!$this->complete) {
+            $sql = "SELECT cre_id AS id, "
+                    . "cre_nom AS nom FROM createurs "
+                    . "JOIN produits ON prod_fk_createur = cre_id "
+                    . "JOIN matieres ON prod_fk_matiere = mat_id "
+                    . "JOIN categories ON prod_fk_categorie = cat_id "
+                    . "WHERE ";
+            $execute = [];
+            if ($crea !== "all") {
+                $sql .= "cre_id = :crea AND ";
+                $execute[':crea'] = $crea;
+            };
+            if ($cat !== "all") {
+                $sql .= "cat_id = :cat AND ";
+                $execute[':cat'] = $cat;
+            };
+            if ($mat !== "all") {
+                $sql .= "mat_id = :mat AND ";
+                $execute[':mat'] = $mat;
+            };
+            $sql = substr($sql, 0, strlen($sql) - 4) . " ORDER BY cre_nom;";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($execute);
+            $this->list = $stmt->fetchAll(PDO::FETCH_CLASS, "Creator");
+            $this->complete = true;
+        }
+        return $this->list;
     }
 
 }
@@ -116,16 +141,45 @@ class MatterAdapter {
     }
 
     function listFilteredMatters($mat, $crea, $cat) {
-        
+        if (!$this->complete) {
+            $sql = "SELECT mat_id AS id, "
+                    . "mat_nom AS nom FROM matieres "
+                    . "JOIN produits ON prod_fk_matiere = mat_id "
+                    . "JOIN createurs ON prod_fk_createur = cre_id "
+                    . "JOIN categories ON prod_fk_categorie = cat_id "
+                    . "WHERE ";
+            $execute = [];
+            if ($mat !== "all") {
+                $sql .= "mat_id = :mat AND ";
+                $execute[':mat'] = $mat;
+            };
+            if ($crea !== "all") {
+                $sql .= "cre_id = :crea AND ";
+                $execute[':crea'] = $crea;
+            };
+            if ($cat !== "all") {
+                $sql .= "cat_id = :cat AND ";
+                $execute[':cat'] = $cat;
+            };
+            $sql = substr($sql, 0, strlen($sql) - 4) . " ORDER BY mat_nom;";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($execute);
+            $this->list = $stmt->fetchAll(PDO::FETCH_CLASS, "Matter");
+            $this->complete = true;
+        }
+        return $this->list;
     }
 
 }
 
 //test de réception des données
+
 /*
 $connexion=DBConnection::getInstance();
-$createurAD=new CreatorAdapter($connexion);
-$listeCreateur=$createurAD->listAllCreators();
+$createurAD = new CreatorAdapter($connexion);
+$listeCreateur=$createurAD->listFilteredCreators("all", "1", "all");
 var_dump($listeCreateur);
-
+ * 
  */
+
+ 
