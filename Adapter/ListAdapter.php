@@ -79,7 +79,7 @@ class CreatorAdapter {
                     . "cre_nom AS nom FROM createurs "
                     . "ORDER BY cre_nom;";
             $stmt = $this->pdo->prepare($sql);
-            $stmt->execute();
+            $stmt->execute([]);
             $this->list = $stmt->fetchAll(PDO::FETCH_CLASS, "Creator");
             $this->complete = true;
         }
