@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Teeshirt</title>
+    <style>
+        body {
+            width: 1060px;
+            margin: auto;
+        }
+        
+        .moteurRecherche {
+            display: inline-block;
+            margin: auto;
+            padding: 0;
+            width: 90%;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        
+        .moteurRecherche>input {
+            border-radius: 15px;
+            float: right;
+            margin-top: 20px;
+            margin-right: 50px;
+            border:1px green solid;
+        }
+    
+      
+        .nav {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav>ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            margin-right: 10px;
+            margin-top: 20px;
+        }
+        
+        .nav>ul>li {
+            border-bottom: 1px black solid;
+            margin: 0;
+            padding: 0;
+            margin-bottom: 5px;
+            padding-right: 10px;
+            border-right: 1px black solid;
+        }
+        
+        .nav>ul>li:hover {
+            background-color:pink;
+        }
+        
+        .nav>ul>li>a {
+            text-decoration: none;
+     ;
+        }
+        
+        #lesRecherches {
+            margin-top: 10px;
+            margin-left: 120px;
+        }
+        
+        #lesRecherches>form>label {
+            margin-left: 20px;
+        }
+        
+      
+        
+        #boutonAfficher {
+            margin-left: 50px;
+        }
+        
+        .listeTshirt {
+            margin: 0;
+            padding: 0;
+            width: 90%;
+            border: 1px pink solid;
+            margin-left: 95px;
+        }
+        
+        .listeTshirt>p {
+            text-align: center;
+            font-family: arial;
+        }
+        .moteurRecherche1{
+            border-bottom:5px pink solid;
+        }
+        .moteurRecherche1>input {
+            border-radius: 15px;
+            margin-left:195px;
+            margin-bottom: 5px;
+        }
+          .moteurRecherche1>h1 {
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+            margin-left: 380px;
+            font-family: arial;
+            font-size: 20px;
+            margin-top: 15px;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav">
+        <ul>
+            <li>
+                <a href="">Tshirt</a></li>
+            <li>
+                <a href="">Catégories</a></li>
+            <li>
+                <a href="">Créateurs</a></li>
+            <li><a href="">Matières</a></li>
+        </ul>
+    </nav>
+
+    <div class="moteurRecherche">
+        <div class="moteurRecherche1">
+            <h1>Moteur de recherche</h1>
+            <input type="search" placeholder="search" name="recherche" id="barreRecherche" />
+        </div>
+
+        <div id="lesRecherches">
+            <form>
+                <label>Créateurs</label>
+                <select id="selectCrea">
+                    <option value="all">Tous</option>
+                </select>
+                <label>Matières</label>
+                <select id="selectMat">
+                    <option value="all">Toutes</option>
+                </select>
+                <label>Catégories</label>
+                <select id="selectCat">
+                    <option value="all">Toutes</option>
+                </select>
+                <input type="button" value="Afficher" name="afficher" id="boutonAfficher" />
+            </form>
+            <p>T-shirt correspondants à la requête:
+            <span>
+                <!--pour y mettre le nombre de tshirt correspondant à la recherche-->
+            </span></p>
+
+        </div>
+    </div>
+    <div class="listeTshirt">
+        <p id="ajout">Ajouter un nouveau t-shirt</p>
+        <ul id="resultatTshirt">
+            <!-- les li qu'on va récupérer seront raccrocher ici!-->
+        </ul>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="Script/client.js"></script>
+     <script src="Script/barreRecherche.js"></script>
+     <script src="Script/filtre.js"></script>
+</body>
+
+</html>
