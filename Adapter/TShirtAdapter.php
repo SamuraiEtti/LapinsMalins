@@ -60,4 +60,43 @@ class TShirtAdapter {
         // Recherche par catégorie
     }
 
+    function searchTShirtByFilters($crea, $mat, $cat) {
+        if (!$this->complete) {
+            $sql = "SELECT prod_id AS id, "
+                    . "prod_nom AS nom, "
+                    . "prod_prix AS prix, "
+                    . "prod_img_gd AS imgDetails, "
+                    . "prod_img_pt AS imgListe, "
+                    . "prod_desc AS description, "
+                    . "cre_nom AS createur, "
+                    . "mat_nom AS matiere, "
+                    . "prod_date AS date, "
+                    . "cat_nom AS categorie "
+                    . "FROM produits "
+                    . "JOIN createurs ON prod_fk_createur = cre_id "
+                    . "JOIN matieres ON prod_fk_matiere = mat_id "
+                    . "JOIN categories ON prod_fk_categorie = cat_id "
+                    . "WHERE ";
+            $execute = [];
+            if ($mat !== "all") {
+                $sql .= "mat_id = :mat AND ";
+                $execute[':mat'] = $mat;
+            };
+            if ($crea !== "all") {
+                $sql .= "cre_id = :crea AND ";
+                $execute[':crea'] = $crea;
+            };
+            if ($cat !== "all") {
+                $sql .= "cat_id = :cat AND ";
+                $execute[':cat'] = $cat;
+            };
+            $sql = substr($sql, 0, strlen($sql) - 4) . " ORDER BY prod_nom;";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($execute);
+            $this->list = $stmt->fetchAll(PDO::FETCH_CLASS, "TShirt");
+            $this->complete = true;
+        }
+        return $this->list;
+    }
+
 }

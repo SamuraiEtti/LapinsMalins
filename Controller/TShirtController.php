@@ -10,4 +10,11 @@ class TShirtController {
         $allTees = $teeAd->listAllTshirt();
         return $allTees;
     }
+    
+    function filterTees($crea, $mat, $cat) {
+        $connect = DBConnection::getInstance();
+        $teeAd = new TShirtAdapter($connect);
+        $liste = $teeAd->searchTShirtByFilters($crea, $mat, $cat);
+        return $liste;
+    }
 }
