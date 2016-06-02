@@ -40,8 +40,30 @@ class TShirtAdapter {
         return $this->list;
     }
 
-    function searchTShirtByName() {
+    function searchTShirtByName($lettre) {
         // Recherche selon l'input search
+          if (!$this->complete) {
+            $sql = "SELECT prod_id AS id, "
+                    . "prod_nom AS nom, "
+                    . "prod_prix AS prix, "
+                    . "prod_img_gd AS imgDetails, "
+                    . "prod_img_pt AS imgListe, "
+                    . "prod_desc AS description, "
+                    . "cre_nom AS createur, "
+                    . "mat_nom AS matiere, "
+                    . "prod_date AS date, "
+                    . "cat_nom AS categorie "
+                    . "FROM produits "
+                    . "JOIN createurs ON prod_fk_createur = cre_id "
+                    . "JOIN matieres ON prod_fk_matiere = mat_id "
+                    . "JOIN categories ON prod_fk_categorie = cat_id "
+                ."WHERE prod_nom LIKE :a";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([":a"=>"%".$lettre."%"]);
+            $this->list = $stmt->fetchAll(PDO::FETCH_CLASS, "TShirt");
+            $this->complete = true;
+        }
+        return $this->list;
     }
 
     // 3 fonctions l'une à la suite de l'autre, mais il faut

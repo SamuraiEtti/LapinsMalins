@@ -17,4 +17,11 @@ class TShirtController {
         $liste = $teeAd->searchTShirtByFilters($crea, $mat, $cat);
         return $liste;
     }
+    
+    function listeBarRecherche($lettre){
+         $connect = DBConnection::getInstance();
+        $teeAd = new TShirtAdapter($connect);
+        $resultat=$teeAd->searchTShirtByName($lettre);
+        return $resultat;
+    }
 }
