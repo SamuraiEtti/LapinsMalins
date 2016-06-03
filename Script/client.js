@@ -1,5 +1,5 @@
 $(function () {
-    
+    console.log("ca passe");
     //écouteurs
     $("")
     
@@ -7,7 +7,7 @@ $(function () {
     function listeTeeshirt() {
         $.ajax("Controller/listeTeeshirt.php", {
             success: function (d, s, xhr) {
-                console.log("success : ", d);
+                //console.log("success : ", d);
                 for (var i = 0; i < d.length; i++) {
                     $("#resultatTshirt").append(
                         $("<li/>").text(d[i]["nom"] + " - " + d[i]["createur"]).attr("class","tshirtResultat")
