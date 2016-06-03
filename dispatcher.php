@@ -28,4 +28,7 @@ switch($page) {
 pour le login: on peut soit écrire user et login en dur ou faire une connexion avec une base de onnées et créer un nouvel adapter pour y faire les requêtes
 dans "logadapter.php": pas besoin de classe, juste faire une requete et veriffier si duo mdp et user est bon, il renvoie un résultat ou n'en renvoie pas (true ou false)
 si true => connecté passe à vrai
+
+au click sur le +, faire un load du fichier html et dire ou tu veux le load: dans le li sur lequel on a cliqué
+faire des classes sur les boutons,
 */
