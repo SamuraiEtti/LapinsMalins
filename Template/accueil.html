@@ -146,6 +146,17 @@
             background-size: contain;
             background-position: center;
         }
+        #boutonAjout{
+            float:right;
+              color:transparent;
+            background-image: url(images/add.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            border-radius: 50%;
+            margin-right:80px;
+        }
+        }
     </style>
 </head>
 
@@ -193,7 +204,9 @@
         </div>
     </div>
     <div class="listeTshirt">
-        <p id="ajout">Ajouter un nouveau t-shirt</p>
+        <p id="ajout">Ajouter un nouveau t-shirt
+            <input type="button" value="+" name="ajout" id="boutonAjout"/>
+        </p>
         <ul id="resultatTshirt">
             <!-- les li qu'on va récupérer seront raccrocher ici!-->
         </ul>
