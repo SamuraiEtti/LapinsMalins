@@ -12,8 +12,12 @@ $(function(){
             $ul=$('#resultatTshirt');
             $ul.html('');
              for(var i=0;i<data.length;i++){
-              $("<li/>").text(data[i].nom)
+              $("<li/>").text(data[i].nom+" - "+data[i].createur)
               .attr("class","tshirtResultat")
+              
+              .append($("<input type='button' value='X' name='delete' class='suppression'/>"))
+              .append($("<input type='button' value='m' name='modif' class='modification'/>"))
+                 .append($("<input type='button' value='+' name='details' class='detail'/>"))
                   .appendTo($ul);
           }
             
