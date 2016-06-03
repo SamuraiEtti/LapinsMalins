@@ -57,7 +57,8 @@ class TShirtAdapter {
                     . "JOIN createurs ON prod_fk_createur = cre_id "
                     . "JOIN matieres ON prod_fk_matiere = mat_id "
                     . "JOIN categories ON prod_fk_categorie = cat_id "
-                ."WHERE prod_nom LIKE :a";
+                ."WHERE prod_nom LIKE :a "
+                ."order by prod_nom";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([":a"=>"%".$lettre."%"]);
             $this->list = $stmt->fetchAll(PDO::FETCH_CLASS, "TShirt");
