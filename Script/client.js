@@ -10,7 +10,7 @@ $(function () {
                 console.log("success : ", d);
                 for (var i = 0; i < d.length; i++) {
                     $("#resultatTshirt").append(
-                        $("<li/>").text(d[i]["nom"] + " - " + d[i]["createur"])
+                        $("<li/>").text(d[i]["nom"] + " - " + d[i]["createur"]).attr("class","tshirtResultat")
                     )
                 }
             },
