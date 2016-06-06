@@ -1,6 +1,7 @@
 $(function () {
 
     $("#boutonAjout").on("click", launchFormAjout);
+    $(document).on("click", ".modification", launchModifForm);
 
 
     function listeTeeshirt() {
@@ -39,6 +40,13 @@ $(function () {
             $div.load("Template/ajout.html");
             $bouton.attr('id', "fermerAjout");
         }
+    }
+    
+    function launchModifForm(e) {
+        var $li = $(e.target).parent();
+        $("<div/>").attr('id', "modifForm").appendTo($li);
+        var $div = $('#modifForm');
+        $div.load('Template/modif.html');
     }
 
     // liste tous les tshirts une fois par défaut
