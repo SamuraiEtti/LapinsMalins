@@ -19,6 +19,11 @@ $(function(){
            $("#detailPrix").text(data[0].prix);
             $("#detailDate").text(data[0].date);
             $("#detailDescription").text(data[0].description);
+            $("#detailCrea").text(data[0].createur);
+            $("#detailMat").text(data[0].matiere);
+            $("#detailCat").text(data[0].categorie);
+            $("#imgListe").attr("src","images/tshirt/" +data[0].imgListe);
+              $("#imgDetail").attr("src","images/tshirt/" +data[0].imgDetails);
         })
     }
 })
