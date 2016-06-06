@@ -1,6 +1,6 @@
 $(function(){
     $('#connexion').on("click",connexion);
-    
+  
 function connexion(e){
     var login=$("#login").val();
     var mdp=$("#mdp").val();
@@ -17,10 +17,14 @@ function connexion(e){
              console.log(data);
            $(data).appendTo($("#leDivRecu"));
            $("#form").hide();
+           $("<input type='button' value='deconnexion' name='deco'/>")
+           .attr("id","deco")
+           .appendTo($("#ciao"));
        })
     }else{
         console.log("pas bon");
     }
     }) 
 }
+
 })

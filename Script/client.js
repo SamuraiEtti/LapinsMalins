@@ -1,6 +1,5 @@
 $(function () {
-    console.log("ca passe");
-    //écouteurs
+  
     $("")
     
     
