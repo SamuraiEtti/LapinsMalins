@@ -1,0 +1,108 @@
+<style>
+    #divDetail{
+        border:1px red solid;
+        background-color: rgba(201,201,201,0.5);
+   
+    }
+    .formDetail{
+        
+        display:inline-block;
+        margin:0;
+        padding:0;
+         margin-top:10px;
+    }
+    .formDetail input{
+        width: 150px;
+        margin:0;
+        padding:0;
+        margin-bottom:5px;
+    }
+    .formDetail label{
+
+          width: 80px;
+        display: inline-block;
+    }
+    .imgDetail{
+        border:1px blue solid;
+         display:inline-block;
+        margin:auto;
+    }
+    .tailleDetail{
+        float:right;
+        border:2px black solid;
+        background-color: white;
+        margin-top:10px;
+        margin-right:10px;
+    }
+    .tailleDetail input{
+        width: 90px;
+        margin:0;
+        padding:0;
+        margin-bottom:5px;
+        
+    }
+    .tailleDetail label{
+        width: 25px;
+        display: inline-block;
+    }
+    #retourListe{
+        float:left;
+    }
+</style>
+  <div id="divDetail">
+   <input type="button" value="-" name="retour" id="retourListe"/>
+   <div class="imgDetail">
+    <figure>
+        <img src="" alt="liste tshirt" id="imgListe" />
+    </figure>
+    <figure>
+        <img src="" alt="details tshirt" id="imgDetail" />
+    </figure>
+</div>
+    <div class="formDetail">
+        <label>Nom:</label>
+        <input type="text" name="nom" value="" id="detailNom"/>
+        <br/>
+        <label>Prix:</label>
+        <input type="text" name="prix" value=""id="detailPrix" />
+        <br/>
+        <label>Date:</label>
+        <input type="text" name="date" value="" id="detailDate"/>
+        <br/>
+        <label>Description</label>
+        <br/>
+        <textarea name="desciption" id="detailDescription"></textarea>
+        <br/>
+        <label>Createur</label>
+        <SELECT name="createur" size="1" id="detailCrea">
+        <option>Default</option>
+        </SELECT>
+        <br/>
+         <label>Matière</label>
+          <SELECT name="matiere" size="1" id="detailMat">
+        <option>Default</option>
+        </SELECT>
+        <br/>
+          <label>Catégorie</label>
+           <SELECT name="categorie" size="1" id="detailCat">
+        <option>Default</option>
+        </SELECT>
+        <br/>
+    </div>
+    <div class="tailleDetail">
+        <p>Tailles:</p>
+         <label>S:</label>
+        <input type="text" name="tailleS" value="" id="detailS" />
+        <br/>
+        <label>M:</label>
+        <input type="text" name="tailleM" value="" id="detailM" />
+        <br/>
+        <label>L:</label>
+        <input type="text" name="tailleL" value="" id="detailL"/>
+        <br/>
+        <label>XL:</label>
+        <input type="text" name="tailleXL" value="" id="detailXL"/>
+       
+    </div>
+
+</div>
