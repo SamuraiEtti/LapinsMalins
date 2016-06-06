@@ -1,0 +1,107 @@
+<style>
+    #divModif{
+        border:1px red solid;
+        background-color: rgba(201,201,201,0.5);
+   
+    }
+    .formDetail{
+        
+        display:inline-block;
+        margin:0;
+        padding:0;
+         margin-top:10px;
+    }
+    .formDetail input{
+        width: 150px;
+        margin:0;
+        padding:0;
+        margin-bottom:5px;
+    }
+    .formDetail label{
+
+          width: 80px;
+        display: inline-block;
+    }
+    .imgDetail{
+        border:1px blue solid;
+         display:inline-block;
+        margin:auto;
+    }
+    .tailleDetail{
+        float:right;
+        border:2px black solid;
+        background-color: white;
+        margin-top:10px;
+        margin-right:10px;
+    }
+    .tailleDetail input{
+        width: 90px;
+        margin:0;
+        padding:0;
+        margin-bottom:5px;
+        
+    }
+    .tailleDetail label{
+        width: 25px;
+        display: inline-block;
+    }
+    #retourListeModif{
+        float:left;
+    }
+</style>
+   <div id="divModif">
+    <input type="button" value="-" name="retour" id="retourListeModif" />
+       <div class="imgDetail">
+    <figure>
+        <img src="" alt="liste tshirt" id="modifImgListe" />
+    </figure>
+    <figure>
+        <img src="" alt="details tshirt" id="modifImgDetail" />
+    </figure>
+       </div>
+    <div class="formDetail">
+        <label>Nom:</label>
+        <input type="text" name="nom" value="" id="modifNom" />
+        <br/>
+        <label>Prix:</label>
+        <input type="text" name="prix" value="" id="modifPrix" />
+        <br/>
+        <label>Date:</label>
+        <input type="text" name="date" value="" id="modifDate" />
+        <br/>
+        <label>Description</label>
+        <textarea name="desciption" id="modifDescription"></textarea>
+        <br/>
+        <label>Createur</label>
+        <SELECT name="createur" size="1" id="modifCrea">
+            <option>Default</option>
+        </SELECT>
+        <br/>
+        <label>Matière</label>
+        <SELECT name="matiere" size="1" id="modifMat">
+            <option>Default</option>
+        </SELECT>
+        <br/>
+        <label>Catégorie</label>
+        <SELECT name="categorie" size="1" id="modifCat">
+            <option>Default</option>
+        </SELECT>
+        <br/>
+    </div>
+    <div class="tailleDetail">
+        <label>S:</label>
+        <input type="text" name="tailleS" value="" id="modifS" />
+        <br/>
+        <label>M:</label>
+        <input type="text" name="tailleM" value="" id="modifM" />
+        <br/>
+        <label>L:</label>
+        <input type="text" name="tailleL" value="" id="modifL" />
+        <br/>
+        <label>XL:</label>
+        <input type="text" name="tailleXL" value="" id="modifXL" />
+        <br/>
+    </div>
+<input type="button" value="sauvegarder" name="sauvegarder" id="modifSauvegarder"/>
+<input type="button" value="annuler" name="annuler" id="modifAnnuler"/>
+</div>

@@ -1,0 +1,108 @@
+  <style>
+      #divAjout{
+        border:1px red solid;
+        background-color: rgba(201,201,201,0.5);
+   
+    }
+    .formDetail{
+        
+        display:inline-block;
+        margin:0;
+        padding:0;
+         margin-top:10px;
+    }
+    .formDetail input{
+        width: 150px;
+        margin:0;
+        padding:0;
+        margin-bottom:5px;
+    }
+    .formDetail label{
+
+          width: 80px;
+        display: inline-block;
+    }
+    .imgDetail{
+        border:1px blue solid;
+         display:inline-block;
+        margin:auto;
+    }
+    .tailleDetail{
+        float:right;
+        border:2px black solid;
+        background-color: white;
+        margin-top:10px;
+        margin-right:10px;
+    }
+    .tailleDetail input{
+        width: 90px;
+        margin:0;
+        padding:0;
+        margin-bottom:5px;
+        
+    }
+    .tailleDetail label{
+        width: 25px;
+        display: inline-block;
+    }
+    #retourListeAjout{
+        float:left;
+    }
+</style>
+   <div id="divAjout">
+    <input type="button" value="-" name="retour" id="retourListeAjout" />
+     <div class="imgDetail">
+    <figure>
+        <img src="" alt="liste tshirt" id="ajoutImgListe" />
+    </figure>
+    <figure>
+        <img src="" alt="details tshirt" id="ajoutImgDetail" />
+    </figure>
+       </div>
+    <div class="formDetail">
+        <label>Nom:</label>
+        <input type="text" name="nom" value="" id="ajoutNom" />
+        <br/>
+        <label>Prix:</label>
+        <input type="text" name="prix" value="" id="ajoutPrix" />
+        <br/>
+        <label>Date:</label>
+        <input type="text" name="date" value="" id="ajoutDate" />
+        <br/>
+        <label>Description</label>
+        <br/>
+        <textarea name="desciption" id="ajoutDescription"></textarea>
+        <br/>
+        <label>Createur</label>
+        <SELECT name="createur" size="1" id="ajoutCrea">
+            <option>Default</option>
+        </SELECT>
+        <br/>
+        <label>Matière</label>
+        <SELECT name="matiere" size="1" id="ajoutMat">
+            <option>Default</option>
+        </SELECT>
+        <br/>
+        <label>Catégorie</label>
+        <SELECT name="categorie" size="1" id="ajoutCat">
+            <option>Default</option>
+        </SELECT>
+        <br/>
+    </div>
+    <div class="tailleDetail">
+        <label>S:</label>
+        <input type="text" name="tailleS" value="" id="ajoutS" />
+        <br/>
+        <label>M:</label>
+        <input type="text" name="tailleM" value="" id="ajoutM" />
+        <br/>
+        <label>L:</label>
+        <input type="text" name="tailleL" value="" id="ajoutL" />
+        <br/>
+        <label>XL:</label>
+        <input type="text" name="tailleXL" value="" id="ajoutXL" />
+        <br/>
+    </div>
+<input type="button" value="sauvegarder" name="sauvegarder" id="ajoutSauvegarder"/>
+<input type="button" value="annuler" name="annuler" id="ajoutAnnuler"/>
+</div>
