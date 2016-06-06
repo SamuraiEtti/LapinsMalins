@@ -8,7 +8,7 @@ class DBConnection {
     private function __construct() {
         $user = "root";
         $password = "mysql";
-        $server = "mysql:host=localhost;dbname=labo_teeshirt";
+        $server = "mysql:host=localhost;dbname=tshirt";
         $this->pdo = new PDO($server, $user, $password);
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $request = "SET NAMES utf8";

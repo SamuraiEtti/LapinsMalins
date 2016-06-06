@@ -11,7 +11,7 @@
         padding:0;
          margin-top:10px;
     }
-    .formDetail input{
+    .formDetail span{
         width: 150px;
         margin:0;
         padding:0;
@@ -34,7 +34,7 @@
         margin-top:10px;
         margin-right:10px;
     }
-    .tailleDetail input{
+    .tailleDetail span{
         width: 90px;
         margin:0;
         padding:0;
@@ -61,47 +61,48 @@
 </div>
     <div class="formDetail">
         <label>Nom:</label>
-        <input type="text" name="nom" value="" id="detailNom"/>
+        <span  id="detailNom"></span>
         <br/>
         <label>Prix:</label>
-        <input type="text" name="prix" value=""id="detailPrix" />
+        <span id="detailPrix"></span>
         <br/>
         <label>Date:</label>
-        <input type="text" name="date" value="" id="detailDate"/>
+        <span id="detailDate"></span>
         <br/>
         <label>Description</label>
         <br/>
         <textarea name="desciption" id="detailDescription"></textarea>
         <br/>
         <label>Createur</label>
-        <SELECT name="createur" size="1" id="detailCrea">
-        <option>Default</option>
-        </SELECT>
+        <span name="createur" size="1" id="detailCrea">
+        </span>
         <br/>
          <label>Matière</label>
-          <SELECT name="matiere" size="1" id="detailMat">
-        <option>Default</option>
-        </SELECT>
+          <span name="matiere" size="1" id="detailMat">
+        </span>
         <br/>
           <label>Catégorie</label>
-           <SELECT name="categorie" size="1" id="detailCat">
-        <option>Default</option>
-        </SELECT>
+           <span name="categorie" size="1" id="detailCat">
+        </span>
         <br/>
     </div>
     <div class="tailleDetail">
         <p>Tailles:</p>
          <label>S:</label>
-        <input type="text" name="tailleS" value="" id="detailS" />
+        <span name="tailleS" value="" id="detailS" >
+        </span>
         <br/>
         <label>M:</label>
-        <input type="text" name="tailleM" value="" id="detailM" />
+        <span  name="tailleM" value="" id="detailM" >
+        </span>
         <br/>
         <label>L:</label>
-        <input type="text" name="tailleL" value="" id="detailL"/>
+        <span  name="tailleL" value="" id="detailL">
+        </span>
         <br/>
         <label>XL:</label>
-        <input type="text" name="tailleXL" value="" id="detailXL"/>
+        <span  name="tailleXL" value="" id="detailXL">
+        </span>
        
     </div>
 
