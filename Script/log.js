@@ -1,5 +1,6 @@
 $(function () {
     $('#connexion').on("click", connexion);
+    $('#form').on("submit", connexion, false);
     $(document).on("click", "#deco", deconnexion);
 
     function connexion(e) {
@@ -14,12 +15,12 @@ $(function () {
                 $.get("dispatcher.php", {
                     page: "index"
                 }, function (data) {
-//                    console.log(data);
+                    //                    console.log(data);
                     $(data).appendTo($("#leDivRecu"));
                     $("#form").hide();
                     $("<input type='button' value='deconnexion' name='deco'/>")
-                            .attr("id", "deco")
-                            .appendTo($("#ciao"));
+                        .attr("id", "deco")
+                        .appendTo($("#ciao"));
                 })
             } else {
                 console.log("pas bon");
