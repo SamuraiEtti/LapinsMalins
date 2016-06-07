@@ -1,74 +1,80 @@
-  <style>
-      #divAjout{
-        border:1px red solid;
-        background-color: rgba(201,201,201,0.5);
-   
-    }
-    .formDetail{
-        
-        display:inline-block;
-        margin:0;
-        padding:0;
-         margin-top:10px;
-    }
-    .formDetail input{
-        width: 150px;
-        margin:0;
-        padding:0;
-        margin-bottom:5px;
-    }
-    .formDetail label{
+<style>
+    #divAjout {
+        border: 1px black solid;
 
-          width: 80px;
+    }
+    
+    .formDetail {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        margin-top: 10px;
+    }
+    
+    .formDetail input {
+        width: 150px;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 5px;
+    }
+    
+    .formDetail label {
+        width: 80px;
         display: inline-block;
     }
-    .imgDetail{
-        border:1px blue solid;
-         display:inline-block;
-        margin:auto;
+    
+    .imgDetail {
+        border: 1px blue solid;
+        display: inline-block;
+        margin: auto;
     }
-    .tailleDetail{
-        float:right;
-        border:2px black solid;
+    
+    .tailleDetail {
+        float: right;
+        border: 2px black solid;
         background-color: white;
-        margin-top:10px;
-        margin-right:10px;
+        margin-top: 10px;
+        margin-right: 10px;
     }
-    .tailleDetail input{
+    
+    .tailleDetail input {
         width: 90px;
-        margin:0;
-        padding:0;
-        margin-bottom:5px;
-        
+        margin: 0;
+        padding: 0;
+        margin-bottom: 5px;
     }
-    .tailleDetail label{
+    
+    .tailleDetail label {
         width: 25px;
         display: inline-block;
     }
-    #retourListeAjout{
-        float:left;
+    
+    #retourListeAjout {
+        float: left;
     }
-      #fermerAjout {
-          float:right;
-            color:transparent;
-            background-image: url(images/minus.png);
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: center;
-            border-radius: 50%;
-            margin-right:80px;
-      }
+    
+    #fermerAjout {
+        float: right;
+        color: transparent;
+        background-image: url(images/minus.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        border-radius: 50%;
+        margin-right: 80px;
+    }
+
 </style>
-   <div id="divAjout">
+<div id="divAjout">
     <input type="button" value="-" name="retour" id="retourListeAjout" />
-     <div class="imgDetail">
-    <figure>
-        <img src="" alt="liste tshirt" id="ajoutImgListe" />
-    </figure>
-    <figure>
-        <img src="" alt="details tshirt" id="ajoutImgDetail" />
-    </figure>
-       </div>
+    <div class="imgDetail">
+        <figure>
+            <img src="" alt="liste tshirt" id="ajoutImgListe" />
+        </figure>
+        <figure>
+            <img src="" alt="details tshirt" id="ajoutImgDetail" />
+        </figure>
+    </div>
     <div class="formDetail">
         <label>Nom:</label>
         <input type="text" name="nom" value="" id="ajoutNom" />
@@ -113,6 +119,6 @@
         <input type="text" name="tailleXL" value="" id="ajoutXL" />
         <br/>
     </div>
-<input type="button" value="sauvegarder" name="sauvegarder" id="ajoutSauvegarder"/>
-<input type="button" value="annuler" name="annuler" id="ajoutAnnuler"/>
+    <input type="button" value="sauvegarder" name="sauvegarder" id="ajoutSauvegarder" />
+    <input type="button" value="annuler" name="annuler" id="ajoutAnnuler" />
 </div>

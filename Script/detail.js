@@ -4,8 +4,12 @@ $(function () {
     console.log("test");
 
     function afficheDetail(e) {
+          if($(e.target==".detail")&&($("#divDetail"))){
+            console.log("c'est le bouton")
+        }
         console.log("ca passe!");
-
+  var leClick=e.target;
+      $(leClick).css("background-image","url(images/minus.png)");
         var papa = $(e.target).parent();
         var idTshirt = papa.attr("data-id");
         //console.log(idTshirt);
@@ -27,5 +31,10 @@ $(function () {
             $("#imgListe").attr("src","images/tshirt/" +data[0].imgListe);
               $("#imgDetail").attr("src","images/tshirt/" +data[0].imgDetails);
         })
+      
+    }
+    
+    function cacheDetail(e){
+        console.log("yo");
     }
 })
