@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../Adapter/TShirtAdapter.php';
+require_once __DIR__ . '/../Classes/TShirt.php';
 require_once __DIR__ . '/../Adapter/DBConnection.php';
 
 class TShirtController {
@@ -31,6 +32,14 @@ class TShirtController {
         $teeAd = new TShirtAdapter($connect);
         $resultat = $teeAd->searchTshirtById($id);
         return $resultat;
+    }
+    
+    function createTee($nom, $prix, $date, $description, $imgGd, $imgPt, $crea, $mat, $cat) {
+        $connect = DBConnection::getInstance();
+        $tee = new TShirt;
+        $tee->newTee($nom, $prix, $date, $description, $imgGd, $imgPt, $crea, $mat, $cat);
+        $teeAd = new TShirtAdapter($connect);
+        $resultat = $teeAd->insertTshirt($tee);
     }
 
 }

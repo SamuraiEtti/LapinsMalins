@@ -42,7 +42,7 @@ class TShirtAdapter {
 
     function searchTShirtByName($lettre) {
         // Recherche selon l'input search
-          if (!$this->complete) {
+        if (!$this->complete) {
             $sql = "SELECT prod_id AS id, "
                     . "prod_nom AS nom, "
                     . "prod_prix AS prix, "
@@ -57,10 +57,10 @@ class TShirtAdapter {
                     . "JOIN createurs ON prod_fk_createur = cre_id "
                     . "JOIN matieres ON prod_fk_matiere = mat_id "
                     . "JOIN categories ON prod_fk_categorie = cat_id "
-                ."WHERE prod_nom LIKE :a "
-                ."order by prod_nom";
+                    . "WHERE prod_nom LIKE :a "
+                    . "order by prod_nom";
             $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([":a"=>"%".$lettre."%"]);
+            $stmt->execute([":a" => "%" . $lettre . "%"]);
             $this->list = $stmt->fetchAll(PDO::FETCH_CLASS, "TShirt");
             $this->complete = true;
         }
@@ -121,8 +121,9 @@ class TShirtAdapter {
         }
         return $this->list;
     }
-function searchTshirtById($id){
-     if (!$this->complete) {
+
+    function searchTshirtById($id) {
+        if (!$this->complete) {
             $sql = "SELECT prod_id AS id, "
                     . "prod_nom AS nom, "
                     . "prod_prix AS prix, "
@@ -137,14 +138,43 @@ function searchTshirtById($id){
                     . "JOIN createurs ON prod_fk_createur = cre_id "
                     . "JOIN matieres ON prod_fk_matiere = mat_id "
                     . "JOIN categories ON prod_fk_categorie = cat_id "
-                ."WHERE prod_id = :a "
-                ."order by prod_nom";
+                    . "WHERE prod_id = :a "
+                    . "order by prod_nom";
             $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([":a"=>$id]);
+            $stmt->execute([":a" => $id]);
             $this->list = $stmt->fetchAll(PDO::FETCH_CLASS, "TShirt");
             $this->complete = true;
         }
         return $this->list;
     }
-}
 
+    function insertTshirt(TShirt $tee) {
+        if (!$this->complete) {
+            $sql = "INSERT INTO produits VALUES ("
+                    . "default, "
+                    . ":nom, "
+                    . ":prix, "
+                    . ":imgGd, "
+                    . ":imgPt, "
+                    . ":description, "
+                    . ":createur, "
+                    . ":matiere, "
+                    . ":date, "
+                    . ":categorie);";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([
+            ':nom' => $tee->getNom(),
+            ':prix' => $tee->getPrix(),
+            ':imgGd' => $tee->getImgDetails(),
+            ':imgPt' => $tee->getImgListe(),
+            ':description' => $tee->getDescription(),
+            ':createur' => $tee->getCreateur(),
+            ':matiere' => $tee->getMatiere(),
+            ':date' => $tee->getDate(),
+            ':categorie' => $tee->getCategorie()
+            ]);
+            $this->complete = true;
+        }
+    }
+
+}

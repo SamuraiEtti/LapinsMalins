@@ -1,6 +1,7 @@
 <?php
 
 class TShirt implements JsonSerializable {
+
     private $id;
     private $nom;
     private $prix;
@@ -11,7 +12,19 @@ class TShirt implements JsonSerializable {
     private $categorie;
     private $imgListe;
     private $imgDetails;
-    
+
+    function newTee($nom, $prix, $date, $description, $imgGd, $imgPt, $crea, $mat, $cat) {
+        $this->setNom($nom);
+        $this->setPrix($prix);
+        $this->setDate($date);
+        $this->setDescription($description);
+        $this->setImgDetails($imgGd);
+        $this->setImgListe($imgPt);
+        $this->setCreateur($crea);
+        $this->setMatiere($mat);
+        $this->setCategorie($cat);
+    }
+
     function getId() {
         return $this->id;
     }
@@ -95,15 +108,16 @@ class TShirt implements JsonSerializable {
     function jsonSerialize() {
         return [
             "id" => $this->id,
-            "nom"=> $this->nom,
-            "prix"=>$this->prix,
-            "date"=>$this->date,
-            "description"=>$this->description,
-            "createur"=>$this->createur,
-            "matiere"=>$this->matiere,
-            "categorie"=>$this->categorie,
-            "imgListe"=>  $this->imgListe,
-            "imgDetails"=>  $this->imgDetails
+            "nom" => $this->nom,
+            "prix" => $this->prix,
+            "date" => $this->date,
+            "description" => $this->description,
+            "createur" => $this->createur,
+            "matiere" => $this->matiere,
+            "categorie" => $this->categorie,
+            "imgListe" => $this->imgListe,
+            "imgDetails" => $this->imgDetails
         ];
     }
+
 }

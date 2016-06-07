@@ -2,6 +2,7 @@ $(function () {
 
     $("#boutonAjout").on("click", launchFormAjout);
     $(document).on("click", ".modification", launchModifForm);
+    $(document).on("click", "#ajoutSauvegarder", addTeeShirt);
 
 
     function listeTeeshirt() {
@@ -50,17 +51,45 @@ $(function () {
         console.log($number);
         if (!$("li[data-id=" + $number + "] .modifForm").length) {
             $("<div/>").attr('class', "modifForm").appendTo($li);
+        } else {
+            $("li[data-id=" + $number + "] .modifForm").toggle();
         }
-        var $div = $('.modifForm');
+        var $div = $('li[data-id=' + $number + '] .modifForm');
         $div.load('Template/modif.html');
 
         $.getJSON("Controller/modif.php", {
                 data_id: $number
             },
             function (data) {
-            console.log(data[0]["nom"]);
+                console.log(data[0]["nom"]);
                 $("li[data-id=" + $number + "] .modifNom").val(data[0]["nom"]);
+                $("li[data-id=" + $number + "] .modifPrix").val(data[0]["prix"]);
+                $("li[data-id=" + $number + "] .modifDate").val(data[0]["date"]);
+                $("li[data-id=" + $number + "] .modifDescription").val(data[0]["description"]);
             })
+    }
+    
+    function addTeeShirt() {
+        $.ajax("Controller/addTee.php", {
+            method: "POST",
+            data: {
+                nom: $("#ajoutNom").val(),
+                prix: $("#ajoutPrix").val(),
+                date: $("#ajoutDate").val(),
+                description: $("#ajoutDescription").val(),
+                createur: $("#ajoutCrea option:selected").val(),
+                matiere: $("#ajoutMat option:selected").val(),
+                categorie: $("#ajoutCat option:selected").val(),
+                imgDetails: "à faire",
+                imgListe: "à faire"
+            },
+            success: function() {
+                console.log("succès ajout tshirt");
+            },
+            error: function() {
+                console.log(arguments);
+            }
+        })
     }
 
     // liste tous les tshirts une fois par défaut
