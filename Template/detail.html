@@ -1,76 +1,86 @@
 <style>
-    #divDetail{
-        border:1px black solid;
+    #divDetail {
         background-color: pink;
-   
+        border-top:1px black solid;
     }
-    .formDetail{
-        
-        display:inline-block;
-        margin:0;
-        padding:0;
-         margin-top:10px;
+    
+    .formDetail {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        margin-top: 10px;
     }
-    .formDetail span{
+    
+    .formDetail span {
         width: 150px;
-        margin:0;
-        padding:0;
-        margin-bottom:5px;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 5px;
     }
-    .formDetail label{
-
-          width: 80px;
+    
+    .formDetail label {
+        width: 80px;
         display: inline-block;
     }
-    .imgDetail{
-      
-         display:inline-block;
-        margin:auto;
+    
+    .imgDetail {
+        display: inline-block;
+        margin: auto;
     }
-    .tailleDetail{
-        float:right;
-        border:2px black solid;
+    
+    .tailleDetail {
+        float: right;
+        border: 2px black solid;
         background-color: white;
-        margin-top:10px;
-        margin-right:10px;
+        margin-top: 10px;
+        margin-right: 10px;
         width: 100px;
     }
-    .tailleDetail span{
+    
+    .tailleDetail span {
         width: 90px;
-        margin:0;
-        padding:0;
-        margin-bottom:5px;
-        
+        margin: 0;
+        padding: 0;
+        margin-bottom: 5px;
     }
-    .tailleDetail label{
+    
+    .tailleDetail label {
         width: 25px;
         display: inline-block;
     }
-    #retourListe{
-        float:left;
-    }
-    #detailDescription{
-        width: 250px;
-        height: 200px;
-    }
-    #imgListe, #imgDetail{
-        width: 50%;
+    
+    #retourListe {
+        float: left;
     }
     
+    #detailDescription {
+        width: 250px;
+        height: 200px;
+        border:1px black solid;
+        width: 270px;
+        background-color:white;
+    }
+    #detailDescription p{
+        
+    }
+    
+    #imgListe,
+    #imgDetail {
+        width: 50%;
+    }
 </style>
-  <div id="divDetail">
-   <input type="button" value="-" name="retour" id="retourListe"/>
-   <div class="imgDetail">
-    <figure>
-        <img src="" alt="liste tshirt" id="imgListe" />
-    </figure>
-    <figure>
-        <img src="" alt="details tshirt" id="imgDetail" />
-    </figure>
-</div>
+<div id="divDetail">
+    <div class="imgDetail">
+        <figure>
+            <img src="" alt="liste tshirt" id="imgListe" />
+        </figure>
+        <figure>
+            <img src="" alt="details tshirt" id="imgDetail" />
+        </figure>
+    </div>
     <div class="formDetail">
         <label>Nom:</label>
-        <span  id="detailNom"></span>
+        <span id="detailNom"></span>
         <br/>
         <label>Prix:</label>
         <span id="detailPrix"></span>
@@ -80,37 +90,37 @@
         <br/>
         <label>Description</label>
         <br/>
-        <textarea name="desciption" id="detailDescription"></textarea>
+        <p id="detailDescription"></p>
         <br/>
         <label>Createur</label>
         <span name="createur" size="1" id="detailCrea">
         </span>
         <br/>
-         <label>Matière</label>
-          <span name="matiere" size="1" id="detailMat">
+        <label>Matière</label>
+        <span name="matiere" size="1" id="detailMat">
         </span>
         <br/>
-          <label>Catégorie</label>
-           <span name="categorie" size="1" id="detailCat">
+        <label>Catégorie</label>
+        <span name="categorie" size="1" id="detailCat">
         </span>
         <br/>
     </div>
     <div class="tailleDetail">
         <p>Tailles:</p>
-         <label>S:</label>
-        <span name="tailleS" value="" id="detailS" >
+        <label>S:</label>
+        <span name="tailleS" value="" id="detailS">
         </span>
         <br/>
         <label>M:</label>
-        <span  name="tailleM" value="" id="detailM" >
+        <span name="tailleM" value="" id="detailM">
         </span>
         <br/>
         <label>L:</label>
-        <span  name="tailleL" value="" id="detailL">
+        <span name="tailleL" value="" id="detailL">
         </span>
         <br/>
         <label>XL:</label>
-        <span  name="tailleXL" value="" id="detailXL">
+        <span name="tailleXL" value="" id="detailXL">
         </span>
 
     </div>
