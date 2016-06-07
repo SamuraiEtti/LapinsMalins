@@ -31,7 +31,9 @@ $(function () {
     function launchFormAjout(e) {
         var $bouton = $('#boutonAjout');
         var $elm = $bouton.parent();
-        $("<div/>").attr("id", "ajoutForm").appendTo($elm);
+        if (!$("#ajoutForm").length) {
+            $("<div/>").attr("id", "ajoutForm").appendTo($elm);
+        }
         var $div = $("#ajoutForm");
         if ($div.html() !== "") {
             $div.html("");
@@ -41,12 +43,24 @@ $(function () {
             $bouton.attr('id', "fermerAjout");
         }
     }
-    
+
     function launchModifForm(e) {
         var $li = $(e.target).parent();
-        $("<div/>").attr('id', "modifForm").appendTo($li);
-        var $div = $('#modifForm');
+        var $number = $li.attr("data-id");
+        console.log($number);
+        if (!$("li[data-id=" + $number + "] .modifForm").length) {
+            $("<div/>").attr('class', "modifForm").appendTo($li);
+        }
+        var $div = $('.modifForm');
         $div.load('Template/modif.html');
+
+        $.getJSON("Controller/modif.php", {
+                data_id: $number
+            },
+            function (data) {
+            console.log(data[0]["nom"]);
+                $("li[data-id=" + $number + "] .modifNom").val(data[0]["nom"]);
+            })
     }
 
     // liste tous les tshirts une fois par défaut

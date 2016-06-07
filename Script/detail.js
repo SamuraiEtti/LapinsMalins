@@ -16,7 +16,7 @@ $(function () {
             id_tshirt: idTshirt
         }, function (data) {
             //selectionnet chaque champ du formulaire et lui dsonner la vlauer renvoyée par le json
-            console.log(data);
+//            console.log(data);
             $("#detailNom").text(data[0].nom);
             $("#detailPrix").text(data[0].prix);
             $("#detailDate").text(data[0].date);
