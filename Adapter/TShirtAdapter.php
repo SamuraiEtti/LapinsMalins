@@ -133,13 +133,20 @@ class TShirtAdapter {
                     . "cre_nom AS createur, "
                     . "mat_nom AS matiere, "
                     . "prod_date AS date, "
-                    . "cat_nom AS categorie "
+                    . "cat_nom AS categorie,"
+                    . "(SELECT exem_stock FROM exemplaires "
+                    . "WHERE exem_fk_tee = :a AND exem_fk_tail = 1) AS small, "
+                    . "(SELECT exem_stock FROM exemplaires "
+                    . "WHERE exem_fk_tee = :a AND exem_fk_tail = 2) AS medium, "
+                    . "(SELECT exem_stock FROM exemplaires "
+                    . "WHERE exem_fk_tee = :a AND exem_fk_tail = 3) AS large, "
+                    . "(SELECT exem_stock FROM exemplaires "
+                    . "WHERE exem_fk_tee = :a AND exem_fk_tail = 4) AS xlarge "
                     . "FROM produits "
                     . "JOIN createurs ON prod_fk_createur = cre_id "
                     . "JOIN matieres ON prod_fk_matiere = mat_id "
                     . "JOIN categories ON prod_fk_categorie = cat_id "
-                    . "WHERE prod_id = :a "
-                    . "order by prod_nom";
+                    . "WHERE prod_id = :a ";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([":a" => $id]);
             $this->list = $stmt->fetchAll(PDO::FETCH_CLASS, "TShirt");

@@ -152,7 +152,11 @@ class TShirt implements JsonSerializable {
             "matiere" => $this->matiere,
             "categorie" => $this->categorie,
             "imgListe" => $this->imgListe,
-            "imgDetails" => $this->imgDetails
+            "imgDetails" => $this->imgDetails,
+            "t_small" =>  $this->small,
+            "t_medium" => $this->medium,
+            "t_large" => $this->large,
+            "t_xlarge" => $this->xlarge
         ];
     }
 

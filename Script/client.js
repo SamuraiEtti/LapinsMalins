@@ -120,6 +120,10 @@ $(function () {
                 $("li[data-id=" + $number + "] .modifPrix").val(data[0]["prix"]);
                 $("li[data-id=" + $number + "] .modifDate").val(data[0]["date"]);
                 $("li[data-id=" + $number + "] .modifDescription").val(data[0]["description"]);
+                $("li[data-id=" + $number + "] .modifS").val(data[0]["t_small"]);
+                $("li[data-id=" + $number + "] .modifM").val(data[0]["t_medium"]);
+                $("li[data-id=" + $number + "] .modifL").val(data[0]["t_large"]);
+                $("li[data-id=" + $number + "] .modifXL").val(data[0]["t_xlarge"]);
             })
     }
 
@@ -140,6 +144,21 @@ $(function () {
             },
             success: function () {
                 console.log("succès ajout tshirt");
+            },
+            error: function () {
+                console.log(arguments);
+            }
+        })
+        $.ajax("Controller/addSize.php", {
+            method: "POST",
+            data: {
+                small: $("#ajoutS").val(),
+                medium: $("#ajoutM").val(),
+                large: $("#ajoutL").val(),
+                xlarge: $("#ajoutXL").val()
+            },
+            success: function() {
+                console.log("succès ajout taille");
             },
             error: function () {
                 console.log(arguments);

@@ -32,6 +32,10 @@ $(function () {
             $("#detailCrea").text(data[0].createur);
             $("#detailMat").text(data[0].matiere);
             $("#detailCat").text(data[0].categorie);
+            $("#detailS").text(data[0].t_small);
+            $("#detailM").text(data[0].t_medium);
+            $("#detailL").text(data[0].t_large);
+            $("#detailXL").text(data[0].t_xlarge);
             $("#imgListe").attr("src", "images/tshirt/" + data[0].imgListe);
             $("#imgDetail").attr("src", "images/tshirt/" + data[0].imgDetails);
         })
