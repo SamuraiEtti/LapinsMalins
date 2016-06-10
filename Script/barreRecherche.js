@@ -15,7 +15,7 @@ $(function () {
             for (var i = 0; i < data.length; i++) {
               $("<li/>").text(data[i].nom+" - "+data[i].createur)
                     .attr("class", "tshirtResultat")
-              
+                .attr("data-id",data[i].id)
               .append($("<input type='button' value='X' name='delete' class='suppression'/>"))
               .append($("<input type='button' value='m' name='modif' class='modification'/>"))
                  .append($("<input type='button' value='+' name='details' class='detail'/>"))
