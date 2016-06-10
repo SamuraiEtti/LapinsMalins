@@ -16,6 +16,13 @@ class ListController {
         }
         return $listCrea;
     }
+    
+    function listAllCrea() {
+        $connect = DBConnection::getInstance();
+        $listAd = new CreatorAdapter($connect);
+        $listCrea = $listAd->listAllCreators();
+        return $listCrea;
+    }
 
     function listCat($cat, $crea, $mat) {
         $connect = DBConnection::getInstance();
@@ -27,6 +34,13 @@ class ListController {
         }
         return $listCat;
     }
+    
+    function listAllCat() {
+        $connect = DBConnection::getInstance();
+        $listAd = new CategoryAdapter($connect);
+        $listCat = $listAd->listAllCategories();
+        return $listCat;
+    }
 
     function listMat($mat, $crea, $cat) {
         $connect = DBConnection::getInstance();
@@ -36,6 +50,13 @@ class ListController {
         } else {
             $listMat = $listAd->listFilteredMatters($mat, $crea, $cat);
         }
+        return $listMat;
+    }
+    
+    function listAllMat() {
+        $connect = DBConnection::getInstance();
+        $listAd = new MatterAdapter($connect);
+        $listMat = $listAd->listAllMatters();
         return $listMat;
     }
 

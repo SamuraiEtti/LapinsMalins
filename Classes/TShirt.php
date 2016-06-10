@@ -12,6 +12,10 @@ class TShirt implements JsonSerializable {
     private $categorie;
     private $imgListe;
     private $imgDetails;
+    private $small;
+    private $medium;
+    private $large;
+    private $xlarge;
 
     function newTee($nom, $prix, $date, $description, $imgGd, $imgPt, $crea, $mat, $cat) {
         $this->setNom($nom);
@@ -103,6 +107,38 @@ class TShirt implements JsonSerializable {
 
     function setImgDetails($imgDetails) {
         $this->imgDetails = $imgDetails;
+    }
+
+    function getSmall() {
+        return $this->small;
+    }
+
+    function getMedium() {
+        return $this->medium;
+    }
+
+    function getLarge() {
+        return $this->large;
+    }
+
+    function getXlarge() {
+        return $this->xlarge;
+    }
+
+    function setSmall($small) {
+        $this->small = $small;
+    }
+
+    function setMedium($medium) {
+        $this->medium = $medium;
+    }
+
+    function setLarge($large) {
+        $this->large = $large;
+    }
+
+    function setXlarge($xlarge) {
+        $this->xlarge = $xlarge;
     }
 
     function jsonSerialize() {

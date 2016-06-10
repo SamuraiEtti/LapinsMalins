@@ -4,7 +4,6 @@ $(function () {
     $(document).on("click", ".modification", launchModifForm);
     $(document).on("click", "#ajoutSauvegarder", addTeeShirt);
 
-
     function listeTeeshirt() {
         $.ajax("Controller/listeTeeshirt.php", {
             success: function (d, s, xhr) {
@@ -43,6 +42,61 @@ $(function () {
             $div.load("Template/ajout.html");
             $bouton.attr('id', "fermerAjout");
         }
+
+        function allCreators() {
+            $.ajax("Controller/listesAjoutModif.php", {
+                data: {
+                    liste: "crea"
+                },
+                error: function () {
+                    console.log(arguments);
+                },
+                success: function (data, status, xhr) {
+                    $("#ajoutCrea").html("");
+                    for (var i = 0; i < data.length; i++) {
+                        $("#ajoutCrea").append($("<option/>").val(data[i]["id"]).text(data[i]["nom"]));
+                    }
+                }
+            })
+        }
+
+        function allMatters() {
+            $.ajax("Controller/listesAjoutModif.php", {
+                data: {
+                    liste: "mat"
+                },
+                error: function () {
+                    console.log(arguments);
+                },
+                success: function (data, status, xhr) {
+                    $("#ajoutMat").html("");
+                    for (var i = 0; i < data.length; i++) {
+                        $("#ajoutMat").append($("<option/>").val(data[i]["id"]).text(data[i]["nom"]));
+                    }
+                }
+            })
+        }
+
+        function allCategories() {
+            $.ajax("Controller/listesAjoutModif.php", {
+                data: {
+                    liste: "cat"
+                },
+                error: function () {
+                    console.log(arguments);
+                },
+                success: function (data, status, xhr) {
+                    $("#ajoutCat").html("");
+                    for (var i = 0; i < data.length; i++) {
+                        $("#ajoutCat").append($("<option/>").val(data[i]["id"]).text(data[i]["nom"]));
+                    }
+                }
+            })
+        }
+
+        allCreators();
+        allMatters();
+        allCategories();
     }
 
     function launchModifForm(e) {
@@ -68,8 +122,9 @@ $(function () {
                 $("li[data-id=" + $number + "] .modifDescription").val(data[0]["description"]);
             })
     }
-    
+
     function addTeeShirt() {
+
         $.ajax("Controller/addTee.php", {
             method: "POST",
             data: {
@@ -83,10 +138,10 @@ $(function () {
                 imgDetails: "à faire",
                 imgListe: "à faire"
             },
-            success: function() {
+            success: function () {
                 console.log("succès ajout tshirt");
             },
-            error: function() {
+            error: function () {
                 console.log(arguments);
             }
         })
