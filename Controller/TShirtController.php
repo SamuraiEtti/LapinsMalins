@@ -40,6 +40,7 @@ class TShirtController {
         $tee->newTee($nom, $prix, $date, $description, $imgGd, $imgPt, $crea, $mat, $cat);
         $teeAd = new TShirtAdapter($connect);
         $resultat = $teeAd->insertTshirt($tee);
+        return $resultat;
     }
 
 }

@@ -41,6 +41,12 @@ $(function () {
         } else {
             $div.load("Template/ajout.html");
             $bouton.attr('id', "fermerAjout");
+            setTimeout(function () {
+                allCreators();
+                allMatters();
+                allCategories();
+            }, 10);
+
         }
 
         function allCreators() {
@@ -93,10 +99,6 @@ $(function () {
                 }
             })
         }
-
-        allCreators();
-        allMatters();
-        allCategories();
     }
 
     function launchModifForm(e) {
@@ -128,6 +130,7 @@ $(function () {
     }
 
     function addTeeShirt() {
+        var id = "";
 
         $.ajax("Controller/addTee.php", {
             method: "POST",
@@ -142,8 +145,10 @@ $(function () {
                 imgDetails: "à faire",
                 imgListe: "à faire"
             },
-            success: function () {
+            success: function (data, status, xhr) {
                 console.log("succès ajout tshirt");
+                $("#divAjout").html("TShirt ajouté avec succès");
+                id = data;
             },
             error: function () {
                 console.log(arguments);
@@ -155,9 +160,10 @@ $(function () {
                 small: $("#ajoutS").val(),
                 medium: $("#ajoutM").val(),
                 large: $("#ajoutL").val(),
-                xlarge: $("#ajoutXL").val()
+                xlarge: $("#ajoutXL").val(),
+                tee_id: id
             },
-            success: function() {
+            success: function () {
                 console.log("succès ajout taille");
             },
             error: function () {

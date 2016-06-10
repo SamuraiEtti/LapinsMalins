@@ -180,8 +180,10 @@ class TShirtAdapter {
             ':date' => $tee->getDate(),
             ':categorie' => $tee->getCategorie()
             ]);
+            $this->list = $this->pdo->lastInsertId();
             $this->complete = true;
         }
+        return $this->list;
     }
     function supprimerTshirtById($id){
        echo"on va supprimer!";
