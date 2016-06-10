@@ -176,5 +176,8 @@ class TShirtAdapter {
             $this->complete = true;
         }
     }
+    function supprimerTshirtById($id){
+       echo"on va supprimer!";
+    }
 
 }
