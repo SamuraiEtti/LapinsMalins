@@ -15,7 +15,5 @@ $sizes[4] = $xlarge;
 
 foreach($sizes as $key => $value) {
     $controller = new ModelController();
-    $controller->createModel($modSize, $teeId, $stock);
+    $controller->createModel($key, $teeId, $value);
 }
-$tee = new ModelContrpoller();
-$tee->createTee($nom, $prix, $date, $description, $imgGd, $imgPt, $crea, $mat, $cat);

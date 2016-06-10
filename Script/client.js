@@ -130,8 +130,6 @@ $(function () {
     }
 
     function addTeeShirt() {
-        var id = "";
-
         $.ajax("Controller/addTee.php", {
             method: "POST",
             data: {
@@ -146,30 +144,33 @@ $(function () {
                 imgListe: "à faire"
             },
             success: function (data, status, xhr) {
-                console.log("succès ajout tshirt");
-                $("#divAjout").html("TShirt ajouté avec succès");
-                id = data;
+                addSize(data)
             },
             error: function () {
                 console.log(arguments);
             }
         })
-        $.ajax("Controller/addSize.php", {
-            method: "POST",
-            data: {
-                small: $("#ajoutS").val(),
-                medium: $("#ajoutM").val(),
-                large: $("#ajoutL").val(),
-                xlarge: $("#ajoutXL").val(),
-                tee_id: id
-            },
-            success: function () {
-                console.log("succès ajout taille");
-            },
-            error: function () {
-                console.log(arguments);
-            }
-        })
+
+        function addSize(data) {
+            console.log("succès ajout tshirt");
+            $.ajax("Controller/addSize.php", {
+                method: "POST",
+                data: {
+                    small: $("#ajoutS").val(),
+                    medium: $("#ajoutM").val(),
+                    large: $("#ajoutL").val(),
+                    xlarge: $("#ajoutXL").val(),
+                    tee_id: data
+                },
+                success: function () {
+                    console.log("succès ajout taille");
+                    $("#divAjout").html("TShirt ajouté avec succès");
+                },
+                error: function () {
+                    console.log(arguments);
+                }
+            })
+        }
     }
 
     // liste tous les tshirts une fois par défaut
