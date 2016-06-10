@@ -184,7 +184,15 @@ class TShirtAdapter {
         }
     }
     function supprimerTshirtById($id){
-       echo"on va supprimer!";
+        if (!$this->complete) {
+            $sql = "DELETE "
+                    . "FROM produits "
+                    . "WHERE  prod_id = :a ";
+            $stmt = $this->pdo->prepare($sql);
+           $stmt->execute([":a" => $id]);
+            $this->complete = true;
+        }
+     
     }
 
 }
