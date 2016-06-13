@@ -45,6 +45,18 @@ class ModelAdapter {
             $this->complete = true;
         }
     }
+    function deleteTshirt($idTshirt){
+         if (!$this->complete) {
+            $sql = "DELETE "
+                    . "FROM exemplaires "
+                    . "WHERE  exem_fk_tee = :a ";
+            $stmt = $this->pdo->prepare($sql);
+           $stmt->execute([":a" => $idTshirt]);
+            $this->complete = true;
+        }
+    }
+
+    
 
     function getIdModel($teeId, $teeSize) {
         if (!$this->complete) {
