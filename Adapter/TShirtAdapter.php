@@ -197,14 +197,14 @@ class TShirtAdapter {
         }
      
     }
-    function updateTshirt(Tshirt $tee){
+    function updateTshirt(Tshirt $tee,$id){
          if (!$this->complete) {
             $sql = "UPDATE produits "
-                    . "SET prod_nom=:nom,prod_prix=:prix,prod_img_gd=:imgGD,prod_img_pt=:img_pt,prod_desc=:desc,prod_fk_createur=:createur,prod_fk_matiere=:matiere,prod_date=:date,prod_fk_categorie=:categorie"
-                    . "WHERE  prod_id = :id ";
+                    . "SET prod_nom=:nom,prod_prix=:prix,prod_img_gd=:imgGD,prod_img_pt=:img_pt,prod_desc=:desc,prod_fk_createur=:createur,prod_fk_matiere=:matiere,prod_date=:date,prod_fk_categorie=:categorie "
+                    . "WHERE  prod_id = :id; ";
             $stmt = $this->pdo->prepare($sql);
            $stmt->execute([
-               ":id" => $tee->getId(),
+               ":id" => $id,
                ":nom"=>$tee->getNom(),
                ":prix"=>$tee->getPrix(),
                ":imgGD"=>$tee->getImgDetails(),
@@ -214,7 +214,6 @@ class TShirtAdapter {
                ":matiere"=>$tee->getMatiere(),
                ":date"=>$tee->getDate(),
                ":categorie"=>$tee->getCategorie()
-               
            ]);
             $this->complete = true;
         }

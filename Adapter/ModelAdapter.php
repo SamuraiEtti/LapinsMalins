@@ -71,5 +71,15 @@ class ModelAdapter {
         }
         return $this->list;
     }
+    function updateExemplaire ($idExemplaire,$stock){
+         if (!$this->complete) {
+            $sql = "UPDATE exemplaires "
+                    . "SET  exem_stock=:stock "
+                    . "WHERE exem_id = :idExemplaire; ";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([':stock'=> $stock, ':idExemplaire'=>$idExemplaire]);
+            $this->complete = TRUE;
+        }
+    }
 
 }

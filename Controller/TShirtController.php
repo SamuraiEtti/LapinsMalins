@@ -42,5 +42,10 @@ class TShirtController {
         $resultat = $teeAd->insertTshirt($tee);
         return $resultat;
     }
+    function modification($tshirt,$id){
+          $connect = DBConnection::getInstance();
+        $teeAd = new TShirtAdapter($connect);
+        $teeAd->updateTshirt($tshirt,$id);
+    }
 
 }

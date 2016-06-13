@@ -17,4 +17,9 @@ class ModelController {
         $idModel = $modAd->getIdModel($teeId, $teeSize);
         return $idModel;
     }
+    function modification($idEx,$stock){
+          $connect = DBConnection::getInstance();
+        $modAd = new ModelAdapter($connect);
+        $modAd->updateExemplaire($idEx,$stock);
+    }
 }

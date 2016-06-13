@@ -3,6 +3,7 @@ $(function () {
     $("#boutonAjout").on("click", launchFormAjout);
     $(document).on("click", ".modification", launchModifForm);
     $(document).on("click", "#ajoutSauvegarder", addTeeShirt);
+    $(document).on("click", ".modifSauvegarder", modifier);
 
     function listeTeeshirt() {
         $.ajax("Controller/listeTeeshirt.php", {
@@ -184,6 +185,40 @@ $(function () {
         })
     }
 
+    function modifier(e) {
+        console.log("ca passeé");
+        //recupere le li
+        var $papa = $(e.target).parent().parent().parent();
+        var $idLi = $papa.attr("data-id");
+        console.log($idLi);
+        $.ajax("Controller/modif.php", {
+            data: {
+                op: "modif",
+                idTshirt: $idLi,
+                nom: $("li[data-id=" + $idLi + "] .modifNom").val(),
+                prix: $("li[data-id=" + $idLi + "] .modifPrix").val(),
+                date: $("li[data-id=" + $idLi + "] .modifDate").val(),
+                description: $("li[data-id=" + $idLi + "] .modifDescription").val(),
+                matiere: $("li[data-id=" + $idLi + "] .modifMat option:selected").val(),
+                categorie: $("li[data-id=" + $idLi + "] .modifCat option:selected").val(),
+                createur: $("li[data-id=" + $idLi + "] .modifCrea option:selected").val(),
+                imgListe: "test",
+                imgDetails: "test2",
+                tailleS: $("li[data-id=" + $idLi + "] .modifS").val(),
+                tailleM: $("li[data-id=" + $idLi + "] .modifM").val(),
+                tailleL: $("li[data-id=" + $idLi + "] .modifL").val(),
+                tailleXL: $("li[data-id=" + $idLi + "] .modifXL").val()
+            },
+            success:function (data, status, xhr) {
+              console.log("succes!");
+            },
+             error: function () {
+                console.log(arguments);
+            }
+        })
+    }
     // liste tous les tshirts une fois par défaut
+
     listeTeeshirt();
+
 })
