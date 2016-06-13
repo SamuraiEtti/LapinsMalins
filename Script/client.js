@@ -84,7 +84,7 @@ $(function () {
                     $("li[data-id=" + $number + "] .modifM").val(data[0]["t_medium"]);
                     $("li[data-id=" + $number + "] .modifL").val(data[0]["t_large"]);
                     $("li[data-id=" + $number + "] .modifXL").val(data[0]["t_xlarge"]);
-                }, 300);
+                }, 150);
             })
     }
 
