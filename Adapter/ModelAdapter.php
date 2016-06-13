@@ -7,7 +7,11 @@ class ModelAdapter {
     private $list = [];
     private $complete = false;
     private $pdo;
-    
+
+    function __construct(PDO $pdo) {
+        $this->pdo = $pdo;
+    }
+
     function listAllSizes($id) {
         if (!$this->complete) {
             $sql = "SELECT exem_id AS idModel, "
@@ -19,11 +23,27 @@ class ModelAdapter {
                     . "JOIN tailles ON tail_id = exem_fk_tail "
                     . "WHERE exem_fk_tee = :id;";
             $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([':id'=>$id]);
+            $stmt->execute([':id' => $id]);
             $this->list = $stmt->fetchAll(PDO::FETCH_CLASS, "ModelSize");
             $this->complete = true;
         }
         return $this->list;
+    }
+
+    function insertModel($modSize, $teeId, $stock) {
+        if (!$this->complete) {
+            $sql = "INSERT INTO exemplaires VALUES ("
+                    . "default, "
+                    . ":teeId, "
+                    . ":modSize, "
+                    . ":stock );";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([
+                ':teeId' => $teeId,
+                ':modSize' => $modSize,
+                ':stock' => $stock]);
+            $this->complete = true;
+        }
     }
 
 }

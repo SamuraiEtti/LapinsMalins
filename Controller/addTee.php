@@ -1,7 +1,6 @@
 <?php
 
 require_once 'TShirtController.php';
-require_once 'ModelController.php';
 
 $nom = $_POST['nom'];
 $prix = $_POST['prix'];
@@ -14,4 +13,5 @@ $imgGd = $_POST['imgDetails'];
 $imgPt = $_POST['imgListe'];
 
 $tee = new TShirtController();
-$tee->createTee($nom, $prix, $date, $description, $imgGd, $imgPt, $crea, $mat, $cat);
+$id = $tee->createTee($nom, $prix, $date, $description, $imgGd, $imgPt, $crea, $mat, $cat);
+echo $id;

@@ -41,6 +41,12 @@ $(function () {
         } else {
             $div.load("Template/ajout.html");
             $bouton.attr('id', "fermerAjout");
+            setTimeout(function () {
+                allCreators();
+                allMatters();
+                allCategories();
+            }, 10);
+
         }
 
         function allCreators() {
@@ -93,10 +99,6 @@ $(function () {
                 }
             })
         }
-
-        allCreators();
-        allMatters();
-        allCategories();
     }
 
     function launchModifForm(e) {
@@ -128,7 +130,6 @@ $(function () {
     }
 
     function addTeeShirt() {
-
         $.ajax("Controller/addTee.php", {
             method: "POST",
             data: {
@@ -142,28 +143,34 @@ $(function () {
                 imgDetails: "à faire",
                 imgListe: "à faire"
             },
-            success: function () {
-                console.log("succès ajout tshirt");
+            success: function (data, status, xhr) {
+                addSize(data)
             },
             error: function () {
                 console.log(arguments);
             }
         })
-        $.ajax("Controller/addSize.php", {
-            method: "POST",
-            data: {
-                small: $("#ajoutS").val(),
-                medium: $("#ajoutM").val(),
-                large: $("#ajoutL").val(),
-                xlarge: $("#ajoutXL").val()
-            },
-            success: function() {
-                console.log("succès ajout taille");
-            },
-            error: function () {
-                console.log(arguments);
-            }
-        })
+
+        function addSize(data) {
+            console.log("succès ajout tshirt");
+            $.ajax("Controller/addSize.php", {
+                method: "POST",
+                data: {
+                    small: $("#ajoutS").val(),
+                    medium: $("#ajoutM").val(),
+                    large: $("#ajoutL").val(),
+                    xlarge: $("#ajoutXL").val(),
+                    tee_id: data
+                },
+                success: function () {
+                    console.log("succès ajout taille");
+                    $("#divAjout").html("TShirt ajouté avec succès");
+                },
+                error: function () {
+                    console.log(arguments);
+                }
+            })
+        }
     }
 
     // liste tous les tshirts une fois par défaut
