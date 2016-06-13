@@ -31,7 +31,8 @@ class TShirtAdapter {
                     . "FROM produits "
                     . "JOIN createurs ON prod_fk_createur = cre_id "
                     . "JOIN matieres ON prod_fk_matiere = mat_id "
-                    . "JOIN categories ON prod_fk_categorie = cat_id;";
+                    . "JOIN categories ON prod_fk_categorie = cat_id "
+                    . "ORDER BY prod_nom ASC" ;
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
             $this->list = $stmt->fetchAll(PDO::FETCH_CLASS, "TShirt");
@@ -195,6 +196,30 @@ class TShirtAdapter {
             $this->complete = true;
         }
      
+    }
+    function updateTshirt(Tshirt $tee){
+         if (!$this->complete) {
+            $sql = "UPDATE produits "
+                    . "SET prod_nom=:nom,prod_prix=:prix,prod_img_gd=:imgGD,prod_img_pt=:img_pt,prod_desc=:desc,prod_fk_createur=:createur,prod_fk_matiere=:matiere,prod_date=:date,prod_fk_categorie=:categorie"
+                    . "WHERE  prod_id = :id ";
+            $stmt = $this->pdo->prepare($sql);
+           $stmt->execute([
+               ":id" => $tee->getId(),
+               ":nom"=>$tee->getNom(),
+               ":prix"=>$tee->getPrix(),
+               ":imgGD"=>$tee->getImgDetails(),
+               ":img_pt"=>$tee->getImgListe(),
+               ":desc"=>$tee->getDescription(),
+               ":createur"=>$tee->getCreateur(),
+               ":matiere"=>$tee->getMatiere(),
+               ":date"=>$tee->getDate(),
+               ":categorie"=>$tee->getCategorie()
+               
+           ]);
+            $this->complete = true;
+        }
+     
+        
     }
 
 }
