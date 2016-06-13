@@ -10,4 +10,11 @@ class ModelController {
         $modAd = new ModelAdapter($connect);
         $modAd->insertModel($modSize, $teeId, $stock);
     }
+    
+    function idModel($teeId, $teeSize) {
+        $connect = DBConnection::getInstance();
+        $modAd = new ModelAdapter($connect);
+        $idModel = $modAd->getIdModel($teeId, $teeSize);
+        return $idModel;
+    }
 }

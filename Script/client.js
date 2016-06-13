@@ -8,6 +8,7 @@ $(function () {
         $.ajax("Controller/listeTeeshirt.php", {
             success: function (d, s, xhr) {
                 //console.log("success : ", d);
+                $("#resultatTshirt").html("");
                 for (var i = 0; i < d.length; i++) {
                     $("#resultatTshirt").append(
                         $("<li/>").text(d[i]["nom"] + " - " + d[i]["createur"]).attr("class", "tshirtResultat")
@@ -42,62 +43,11 @@ $(function () {
             $div.load("Template/ajout.html");
             $bouton.attr('id', "fermerAjout");
             setTimeout(function () {
-                allCreators();
-                allMatters();
-                allCategories();
+                allCreators("#ajoutCrea");
+                allMatters("#ajoutMat");
+                allCategories("#ajoutCat");
             }, 10);
 
-        }
-
-        function allCreators() {
-            $.ajax("Controller/listesAjoutModif.php", {
-                data: {
-                    liste: "crea"
-                },
-                error: function () {
-                    console.log(arguments);
-                },
-                success: function (data, status, xhr) {
-                    $("#ajoutCrea").html("");
-                    for (var i = 0; i < data.length; i++) {
-                        $("#ajoutCrea").append($("<option/>").val(data[i]["id"]).text(data[i]["nom"]));
-                    }
-                }
-            })
-        }
-
-        function allMatters() {
-            $.ajax("Controller/listesAjoutModif.php", {
-                data: {
-                    liste: "mat"
-                },
-                error: function () {
-                    console.log(arguments);
-                },
-                success: function (data, status, xhr) {
-                    $("#ajoutMat").html("");
-                    for (var i = 0; i < data.length; i++) {
-                        $("#ajoutMat").append($("<option/>").val(data[i]["id"]).text(data[i]["nom"]));
-                    }
-                }
-            })
-        }
-
-        function allCategories() {
-            $.ajax("Controller/listesAjoutModif.php", {
-                data: {
-                    liste: "cat"
-                },
-                error: function () {
-                    console.log(arguments);
-                },
-                success: function (data, status, xhr) {
-                    $("#ajoutCat").html("");
-                    for (var i = 0; i < data.length; i++) {
-                        $("#ajoutCat").append($("<option/>").val(data[i]["id"]).text(data[i]["nom"]));
-                    }
-                }
-            })
         }
     }
 
@@ -114,18 +64,27 @@ $(function () {
         $div.load('Template/modif.html');
 
         $.getJSON("Controller/modif.php", {
-                data_id: $number
+                data_id: $number,
+                op: "affichage"
             },
             function (data) {
-                console.log(data[0]["nom"]);
-                $("li[data-id=" + $number + "] .modifNom").val(data[0]["nom"]);
-                $("li[data-id=" + $number + "] .modifPrix").val(data[0]["prix"]);
-                $("li[data-id=" + $number + "] .modifDate").val(data[0]["date"]);
-                $("li[data-id=" + $number + "] .modifDescription").val(data[0]["description"]);
-                $("li[data-id=" + $number + "] .modifS").val(data[0]["t_small"]);
-                $("li[data-id=" + $number + "] .modifM").val(data[0]["t_medium"]);
-                $("li[data-id=" + $number + "] .modifL").val(data[0]["t_large"]);
-                $("li[data-id=" + $number + "] .modifXL").val(data[0]["t_xlarge"]);
+                allCreators("li[data-id=" + $number + "] .modifCrea");
+                allMatters("li[data-id=" + $number + "] .modifMat");
+                allCategories("li[data-id=" + $number + "] .modifCat");
+
+                setTimeout(function () {
+                    $("li[data-id=" + $number + "] .modifNom").val(data[0]["nom"]);
+                    $("li[data-id=" + $number + "] .modifPrix").val(data[0]["prix"]);
+                    $("li[data-id=" + $number + "] .modifDate").val(data[0]["date"]);
+                    $("li[data-id=" + $number + "] .modifDescription").val(data[0]["description"]);
+                    $("li[data-id=" + $number + "] .modifCrea option[value='" + data[0]["createur"] + "']").attr("selected", true);
+                    $("li[data-id=" + $number + "] .modifCat option[value=" + data[0]["categorie"] + "]").attr("selected", true);
+                    $("li[data-id=" + $number + "] .modifMat option[value=" + data[0]["matiere"] + "]").attr("selected", true);
+                    $("li[data-id=" + $number + "] .modifS").val(data[0]["t_small"]);
+                    $("li[data-id=" + $number + "] .modifM").val(data[0]["t_medium"]);
+                    $("li[data-id=" + $number + "] .modifL").val(data[0]["t_large"]);
+                    $("li[data-id=" + $number + "] .modifXL").val(data[0]["t_xlarge"]);
+                }, 300);
             })
     }
 
@@ -144,7 +103,8 @@ $(function () {
                 imgListe: "à faire"
             },
             success: function (data, status, xhr) {
-                addSize(data)
+                addSize(data);
+                listeTeeshirt();
             },
             error: function () {
                 console.log(arguments);
@@ -171,6 +131,57 @@ $(function () {
                 }
             })
         }
+    }
+
+    function allCreators(div) {
+        $.ajax("Controller/listesAjoutModif.php", {
+            data: {
+                liste: "crea"
+            },
+            error: function () {
+                console.log(arguments);
+            },
+            success: function (data, status, xhr) {
+                $(div).html("");
+                for (var i = 0; i < data.length; i++) {
+                    $(div).append($("<option/>").val(data[i]["id"]).text(data[i]["nom"]));
+                }
+            }
+        })
+    }
+
+    function allMatters(div) {
+        $.ajax("Controller/listesAjoutModif.php", {
+            data: {
+                liste: "mat"
+            },
+            error: function () {
+                console.log(arguments);
+            },
+            success: function (data, status, xhr) {
+                $(div).html("");
+                for (var i = 0; i < data.length; i++) {
+                    $(div).append($("<option/>").val(data[i]["id"]).text(data[i]["nom"]));
+                }
+            }
+        })
+    }
+
+    function allCategories(div) {
+        $.ajax("Controller/listesAjoutModif.php", {
+            data: {
+                liste: "cat"
+            },
+            error: function () {
+                console.log(arguments);
+            },
+            success: function (data, status, xhr) {
+                $(div).html("");
+                for (var i = 0; i < data.length; i++) {
+                    $(div).append($("<option/>").val(data[i]["id"]).text(data[i]["nom"]));
+                }
+            }
+        })
     }
 
     // liste tous les tshirts une fois par défaut

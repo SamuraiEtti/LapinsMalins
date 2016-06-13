@@ -46,4 +46,18 @@ class ModelAdapter {
         }
     }
 
+    function getIdModel($teeId, $teeSize) {
+        if (!$this->complete) {
+            $sql = "SELECT exem_id "
+                    . "FROM exemplaires "
+                    . "WHERE exem_fk_tee = :teeId "
+                    . "AND exem_fk_tail = :teeSize;";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([':teeId' => $teeId, ':teeSize' => $teeSize]);
+            $this->list = $stmt->fetchAll();
+            $this->complete = TRUE;
+        }
+        return $this->list;
+    }
+
 }
