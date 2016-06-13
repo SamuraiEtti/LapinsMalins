@@ -23,3 +23,8 @@ class ModelController {
         $modAd->updateExemplaire($idEx,$stock);
     }
 }
+/*
+$mc=new ModelController();
+$mc->modification(87,30);
+echo "coucou";
+*/

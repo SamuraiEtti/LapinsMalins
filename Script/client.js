@@ -58,8 +58,15 @@ $(function () {
         console.log($number);
         if (!$("li[data-id=" + $number + "] .modifForm").length) {
             $("<div/>").attr('class', "modifForm").appendTo($li);
-        } else {
+        } 
+        else if($("li[data-id=" + $number + "] .modifForm").length<10){
+                   $("li[data-id=" + $number + "] .modifForm").show();
+            console.log("caz rentre");
+    
+        }
+        else {
             $("li[data-id=" + $number + "] .modifForm").toggle();
+            
         }
         var $div = $('li[data-id=' + $number + '] .modifForm');
         $div.load('Template/modif.html');
@@ -211,6 +218,7 @@ $(function () {
             },
             success:function (data, status, xhr) {
               console.log("succes!");
+                $("li[data-id="+$idLi+"] .divModif").html("  modifié");
             },
              error: function () {
                 console.log(arguments);

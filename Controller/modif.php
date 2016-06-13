@@ -44,6 +44,9 @@ $tshirt=new TShirt();
              $exemplaire = new ModelController();
             $idModel=$exemplaire->idModel($id,$key);
             $exemplaire->modification($idModel,$valeur);
+            echo $valeur;
+            echo $key;
+            echo $idModel;
         } 
    
      

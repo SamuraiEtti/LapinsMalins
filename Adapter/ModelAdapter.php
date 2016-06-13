@@ -66,7 +66,7 @@ class ModelAdapter {
                     . "AND exem_fk_tail = :teeSize;";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([':teeId' => $teeId, ':teeSize' => $teeSize]);
-            $this->list = $stmt->fetchAll();
+            $this->list = $stmt->fetchColumn();
             $this->complete = TRUE;
         }
         return $this->list;
