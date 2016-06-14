@@ -8,8 +8,11 @@ class TShirt implements JsonSerializable {
     private $date;
     private $description;
     private $createur;
+    private $creaId;
     private $matiere;
+    private $matId;
     private $categorie;
+    private $catId;
     private $imgListe;
     private $imgDetails;
     private $small;
@@ -140,6 +143,30 @@ class TShirt implements JsonSerializable {
     function setXlarge($xlarge) {
         $this->xlarge = $xlarge;
     }
+    
+    function getCreaId() {
+        return $this->creaId;
+    }
+
+    function getMatId() {
+        return $this->matId;
+    }
+
+    function getCatId() {
+        return $this->catId;
+    }
+
+    function setCreaId($creaId) {
+        $this->creaId = $creaId;
+    }
+
+    function setMatId($matId) {
+        $this->matId = $matId;
+    }
+
+    function setCatId($catId) {
+        $this->catId = $catId;
+    }
 
     function jsonSerialize() {
         return [
@@ -149,8 +176,11 @@ class TShirt implements JsonSerializable {
             "date" => $this->date,
             "description" => $this->description,
             "createur" => $this->createur,
+            "creaId" => $this->creaId,
             "matiere" => $this->matiere,
+            "matId" => $this->matId,
             "categorie" => $this->categorie,
+            "catId" => $this->catId,
             "imgListe" => $this->imgListe,
             "imgDetails" => $this->imgDetails,
             "t_small" =>  $this->small,

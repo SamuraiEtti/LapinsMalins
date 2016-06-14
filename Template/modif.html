@@ -1,7 +1,8 @@
 <style>
-    #divModif{
+    .divModif{
       
         background-color: rgba(201,201,201,0.5);
+        overflow: hidden;
    
     }
     .formDetail{
@@ -24,8 +25,10 @@
     }
     .imgDetail{
       
-         display:inline-block;
+        display:inline-block;
         margin:auto;
+        float: left;
+        max-width: 300px;
     }
     .tailleDetail{
         float:right;
@@ -48,24 +51,34 @@
     #retourListeModif{
         float:left;
     }
+    .modifImgListe, .modifImgDetail {
+        width: 50%;
+        max-width: 300px;
+    }
 </style>
    <div class="divModif">
 <!--    <input type="button" value="-" name="retour" id="retourListeModif" />-->
        <div class="imgDetail">
     <figure>
         <img src="" alt="liste tshirt" class="modifImgListe" />
+        <span class="nomImgListe"></span>
+<!--
          <form class="my_form2" method="post" action="Controller/process_form.php" enctype="multipart/form-data">
                 <input type="file" name="image" accept="image/*">
                 <button type="submit">OK</button>
             </form>
+-->
            
         </figure>
         <figure>
-            <img src="" alt="details tshirt" id="ajoutImgDetail" />
+            <img src="" alt="details tshirt" class="modifImgDetail" />
+            <span class="nomImgDetail"></span>
+<!--
              <form class="my_form" method="post" action="Controller/process_form.php" enctype="multipart/form-data">
                 <input type="file" name="image" accept="image/*">
                 <button type="submit">OK</button>
             </form>
+-->
     </figure>
        </div>
     <div class="formDetail">

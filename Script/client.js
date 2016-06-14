@@ -4,10 +4,11 @@ $(function () {
     $(document).on("click", ".modification", launchModifForm);
     $(document).on("click", "#ajoutSauvegarder", addTeeShirt);
     $(document).on("click", ".modifSauvegarder", modifier);
-$(document).on("submit","#my_form",envoyerImage);
-    $(document).on("submit","#my_form2",envoyerImage);
-    $(document).on("submit",".my_form",envoyerImage);
-     $(document).on("submit",".my_form2",envoyerImage);
+    $(document).on("submit", "#my_form", envoyerImage);
+    $(document).on("submit", "#my_form2", envoyerImage);
+    $(document).on("submit", ".my_form", envoyerImage);
+    $(document).on("submit", ".my_form2", envoyerImage);
+
     function listeTeeshirt() {
         $.ajax("Controller/listeTeeshirt.php", {
             success: function (d, s, xhr) {
@@ -60,16 +61,12 @@ $(document).on("submit","#my_form",envoyerImage);
         var $number = $li.attr("data-id");
         console.log($number);
         if (!$("li[data-id=" + $number + "] .modifForm").length) {
+            $(".modifForm").remove();
             $("<div/>").attr('class', "modifForm").appendTo($li);
-        } 
-        else if($("li[data-id=" + $number + "] .modifForm").length<10){
-                   $("li[data-id=" + $number + "] .modifForm").show();
-            console.log("caz rentre");
-    
-        }
-        else {
-            $("li[data-id=" + $number + "] .modifForm").toggle();
-            
+        } else {
+            $(".modifForm").remove();
+//            $("li[data-id=" + $number + "] .modifForm").toggle();
+
         }
         var $div = $('li[data-id=' + $number + '] .modifForm');
         $div.load('Template/modif.html');
@@ -88,17 +85,19 @@ $(document).on("submit","#my_form",envoyerImage);
                     $("li[data-id=" + $number + "] .modifPrix").val(data[0]["prix"]);
                     $("li[data-id=" + $number + "] .modifDate").val(data[0]["date"]);
                     $("li[data-id=" + $number + "] .modifDescription").val(data[0]["description"]);
-                    $("li[data-id=" + $number + "] .modifCrea option[value='" + data[0]["createur"] + "']").attr("selected", true);
-                    $("li[data-id=" + $number + "] .modifCat option[value=" + data[0]["categorie"] + "]").attr("selected", true);
-                    $("li[data-id=" + $number + "] .modifMat option[value=" + data[0]["matiere"] + "]").attr("selected", true);
+                    $("li[data-id=" + $number + "] .modifCrea option[value='" + data[0]["creaId"] + "']").attr("selected", true);
+                    $("li[data-id=" + $number + "] .modifCat option[value=" + data[0]["catId"] + "]").attr("selected", true);
+                    $("li[data-id=" + $number + "] .modifMat option[value=" + data[0]["matId"] + "]").attr("selected", true);
                     $("li[data-id=" + $number + "] .modifS").val(data[0]["t_small"]);
                     $("li[data-id=" + $number + "] .modifM").val(data[0]["t_medium"]);
                     $("li[data-id=" + $number + "] .modifL").val(data[0]["t_large"]);
                     $("li[data-id=" + $number + "] .modifXL").val(data[0]["t_xlarge"]);
-                    $("li[data-id=" + $number + "] .my_form input").val(data[0]["imgDetails"]);
-                    $("li[data-id=" + $number + "] .my_form2 input").val(data[0]["imgListe"]);
-                      $("li[data-id=" + $number + "] .modifImgDetail").attr("src","images/tshirt/"+data[0]["imgListe"]);
-                      $("li[data-id=" + $number + "] .modifImgListe").attr("src","images/tshirt/"+data[0]["imgListe"]);
+                    //                    $("li[data-id=" + $number + "] .my_form input").val(data[0]["imgDetails"]);
+                    //                    $("li[data-id=" + $number + "] .my_form2 input").val(data[0]["imgListe"]);
+                    $("li[data-id=" + $number + "] .modifImgDetail").attr("src", "images/tshirt/" + data[0]["imgDetails"]);
+                    $("li[data-id=" + $number + "] .nomImgDetail").text(data[0]["imgDetails"]);
+                    $("li[data-id=" + $number + "] .modifImgListe").attr("src", "images/tshirt/" + data[0]["imgListe"]);
+                    $("li[data-id=" + $number + "] .nomImgListe").text(data[0]["imgListe"]);
                 }, 150);
             })
     }
@@ -216,31 +215,31 @@ $(document).on("submit","#my_form",envoyerImage);
                 matiere: $("li[data-id=" + $idLi + "] .modifMat option:selected").val(),
                 categorie: $("li[data-id=" + $idLi + "] .modifCat option:selected").val(),
                 createur: $("li[data-id=" + $idLi + "] .modifCrea option:selected").val(),
-                imgListe: $("li[data-id=" + $idLi + "] .my_form2 input").val(),
-                imgDetails:  $("li[data-id=" + $idLi + "] .my_form input").val(),
+                imgListe: $("li[data-id=" + $idLi + "] .nomImgListe").text(),
+                imgDetails: $("li[data-id=" + $idLi + "] .nomImgDetail").text(),
                 tailleS: $("li[data-id=" + $idLi + "] .modifS").val(),
                 tailleM: $("li[data-id=" + $idLi + "] .modifM").val(),
                 tailleL: $("li[data-id=" + $idLi + "] .modifL").val(),
                 tailleXL: $("li[data-id=" + $idLi + "] .modifXL").val()
             },
-            success:function (data, status, xhr) {
-              console.log("succes!");
-                $("li[data-id="+$idLi+"] .divModif").html("  modifié");
+            success: function (data, status, xhr) {
+                console.log("succes!");
+                $("li[data-id=" + $idLi + "] .divModif").html("  modifié");
             },
-             error: function () {
+            error: function () {
                 console.log(arguments);
             }
         })
     }
-    
-function envoyerImage(e) {
+
+    function envoyerImage(e) {
         // On empêche le navigateur de soumettre le formulaire
         e.preventDefault();
- 
+
         var $form = $(this);
         var formdata = (window.FormData) ? new FormData($form[0]) : null;
         var data = (formdata !== null) ? formdata : $form.serialize();
- 
+
         $.ajax({
             url: $form.attr('action'),
             type: $form.attr('method'),
@@ -250,7 +249,7 @@ function envoyerImage(e) {
             data: data,
             success: function (response) {
                 // La réponse du serveur
-                  console.log("succes!");
+                console.log("succes!");
                 $('#result > pre').html(JSON.stringify(response, undefined, 4));
             }
         });
@@ -258,6 +257,6 @@ function envoyerImage(e) {
     // liste tous les tshirts une fois par défaut
 
     listeTeeshirt();
-    
+
 
 })
