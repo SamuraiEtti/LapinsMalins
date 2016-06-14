@@ -8,6 +8,7 @@ $(function () {
     $(document).on("submit", "#my_form2", envoyerImage);
     $(document).on("submit", ".my_form", envoyerImage);
     $(document).on("submit", ".my_form2", envoyerImage);
+    $(document).on("click", ".divModifImages", allImages);
 
     function listeTeeshirt() {
         $.ajax("Controller/listeTeeshirt.php", {
@@ -16,12 +17,12 @@ $(function () {
                 $("#resultatTshirt").html("");
                 for (var i = 0; i < d.length; i++) {
                     $("#resultatTshirt").append(
-                        $("<li/>").text(d[i]["nom"] + " - " + d[i]["createur"]).attr("class", "tshirtResultat")
-                        .attr("data-id", d[i]["id"])
-                        .append($("<input type='button' value='X' name='delete' class='suppression'/>"))
-                        .append($("<input type='button' value='m' name='modif' class='modification'/>"))
-                        .append($("<input type='button' value='+' name='details' class='detail'/>"))
-                    )
+                            $("<li/>").text(d[i]["nom"] + " - " + d[i]["createur"]).attr("class", "tshirtResultat")
+                            .attr("data-id", d[i]["id"])
+                            .append($("<input type='button' value='X' name='delete' class='suppression'/>"))
+                            .append($("<input type='button' value='m' name='modif' class='modification'/>"))
+                            .append($("<input type='button' value='+' name='details' class='detail'/>"))
+                            )
                 }
             },
             error: function () {
@@ -72,34 +73,34 @@ $(function () {
         $div.load('Template/modif.html');
 
         $.getJSON("Controller/modif.php", {
-                data_id: $number,
-                op: "affichage"
-            },
-            function (data) {
-                allCreators("li[data-id=" + $number + "] .modifCrea");
-                allMatters("li[data-id=" + $number + "] .modifMat");
-                allCategories("li[data-id=" + $number + "] .modifCat");
+            data_id: $number,
+            op: "affichage"
+        },
+                function (data) {
+                    allCreators("li[data-id=" + $number + "] .modifCrea");
+                    allMatters("li[data-id=" + $number + "] .modifMat");
+                    allCategories("li[data-id=" + $number + "] .modifCat");
 
-                setTimeout(function () {
-                    $("li[data-id=" + $number + "] .modifNom").val(data[0]["nom"]);
-                    $("li[data-id=" + $number + "] .modifPrix").val(data[0]["prix"]);
-                    $("li[data-id=" + $number + "] .modifDate").val(data[0]["date"]);
-                    $("li[data-id=" + $number + "] .modifDescription").val(data[0]["description"]);
-                    $("li[data-id=" + $number + "] .modifCrea option[value='" + data[0]["creaId"] + "']").attr("selected", true);
-                    $("li[data-id=" + $number + "] .modifCat option[value=" + data[0]["catId"] + "]").attr("selected", true);
-                    $("li[data-id=" + $number + "] .modifMat option[value=" + data[0]["matId"] + "]").attr("selected", true);
-                    $("li[data-id=" + $number + "] .modifS").val(data[0]["t_small"]);
-                    $("li[data-id=" + $number + "] .modifM").val(data[0]["t_medium"]);
-                    $("li[data-id=" + $number + "] .modifL").val(data[0]["t_large"]);
-                    $("li[data-id=" + $number + "] .modifXL").val(data[0]["t_xlarge"]);
-                    //                    $("li[data-id=" + $number + "] .my_form input").val(data[0]["imgDetails"]);
-                    //                    $("li[data-id=" + $number + "] .my_form2 input").val(data[0]["imgListe"]);
-                    $("li[data-id=" + $number + "] .modifImgDetail").attr("src", "images/tshirt/" + data[0]["imgDetails"]);
-                    $("li[data-id=" + $number + "] .nomImgDetail").text(data[0]["imgDetails"]);
-                    $("li[data-id=" + $number + "] .modifImgListe").attr("src", "images/tshirt/" + data[0]["imgListe"]);
-                    $("li[data-id=" + $number + "] .nomImgListe").text(data[0]["imgListe"]);
-                }, 150);
-            })
+                    setTimeout(function () {
+                        $("li[data-id=" + $number + "] .modifNom").val(data[0]["nom"]);
+                        $("li[data-id=" + $number + "] .modifPrix").val(data[0]["prix"]);
+                        $("li[data-id=" + $number + "] .modifDate").val(data[0]["date"]);
+                        $("li[data-id=" + $number + "] .modifDescription").val(data[0]["description"]);
+                        $("li[data-id=" + $number + "] .modifCrea option[value='" + data[0]["creaId"] + "']").attr("selected", true);
+                        $("li[data-id=" + $number + "] .modifCat option[value=" + data[0]["catId"] + "]").attr("selected", true);
+                        $("li[data-id=" + $number + "] .modifMat option[value=" + data[0]["matId"] + "]").attr("selected", true);
+                        $("li[data-id=" + $number + "] .modifS").val(data[0]["t_small"]);
+                        $("li[data-id=" + $number + "] .modifM").val(data[0]["t_medium"]);
+                        $("li[data-id=" + $number + "] .modifL").val(data[0]["t_large"]);
+                        $("li[data-id=" + $number + "] .modifXL").val(data[0]["t_xlarge"]);
+                        //                    $("li[data-id=" + $number + "] .my_form input").val(data[0]["imgDetails"]);
+                        //                    $("li[data-id=" + $number + "] .my_form2 input").val(data[0]["imgListe"]);
+                        $("li[data-id=" + $number + "] .modifImgDetail").attr("src", "images/tshirt/" + data[0]["imgDetails"]);
+                        $("li[data-id=" + $number + "] .nomImgDetail").text(data[0]["imgDetails"]);
+                        $("li[data-id=" + $number + "] .modifImgListe").attr("src", "images/tshirt/" + data[0]["imgListe"]);
+                        $("li[data-id=" + $number + "] .nomImgListe").text(data[0]["imgListe"]);
+                    }, 150);
+                })
     }
 
     function addTeeShirt() {
@@ -198,6 +199,30 @@ $(function () {
         })
     }
 
+    function allImages(e) {
+        var $id = $(e.target).parent().parent().attr("data-id");
+
+        if ($(".listeImages").length) {
+            $(".listeImages").toggle();
+        } else {
+            $.ajax("Controller/modif.php", {
+                data: {
+                    op: "listeImg"
+                },
+                error: function () {
+                    console.log(arguments);
+                },
+                success: function (data, status, xhr) {
+                    $("<div/>").attr("class", "listeImages").appendTo($(".divModifImages"));
+                    for (var i = 0; i < data.length; i++) {
+                        console.log(data[i]);
+                        $(".listeImages").append($("<img>").attr("src", "images/tshirt/" + data[i]));
+                    }
+                }
+            })
+        }
+    }
+
     function modifier(e) {
         console.log("ca passeé");
         //recupere le li
@@ -253,7 +278,8 @@ $(function () {
                 $('#result > pre').html(JSON.stringify(response, undefined, 4));
             }
         });
-    };
+    }
+    ;
     // liste tous les tshirts une fois par défaut
 
     listeTeeshirt();

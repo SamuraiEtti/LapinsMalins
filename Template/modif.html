@@ -1,16 +1,17 @@
 <style>
+    .modifForm {
+        margin: 0;
+    }
     .divModif{
-      
         background-color: rgba(201,201,201,0.5);
         overflow: hidden;
-   
+        width: 100%;
     }
     .formDetail{
-        
         display:inline-block;
         margin:0;
         padding:0;
-         margin-top:10px;
+        margin-top:10px;
     }
     .formDetail input{
         width: 150px;
@@ -20,11 +21,11 @@
     }
     .formDetail label{
 
-          width: 80px;
+        width: 80px;
         display: inline-block;
     }
     .imgDetail{
-      
+
         display:inline-block;
         margin:auto;
         float: left;
@@ -42,7 +43,7 @@
         margin:0;
         padding:0;
         margin-bottom:5px;
-        
+
     }
     .tailleDetail label{
         width: 25px;
@@ -55,32 +56,44 @@
         width: 50%;
         max-width: 300px;
     }
+    .divModifImages {
+        width: 100%;    
+    }
+    .listeImages{
+        display: flex;
+        flex-direction: row;
+        overflow-x: scroll;
+    }
+    .listeImages img {
+        height: 150px;
+        flex: 1;
+    }
 </style>
-   <div class="divModif">
-<!--    <input type="button" value="-" name="retour" id="retourListeModif" />-->
-       <div class="imgDetail">
-    <figure>
-        <img src="" alt="liste tshirt" class="modifImgListe" />
-        <span class="nomImgListe"></span>
-<!--
-         <form class="my_form2" method="post" action="Controller/process_form.php" enctype="multipart/form-data">
-                <input type="file" name="image" accept="image/*">
-                <button type="submit">OK</button>
-            </form>
--->
-           
+<div class="divModif">
+    <!--    <input type="button" value="-" name="retour" id="retourListeModif" />-->
+    <div class="imgDetail">
+        <figure>
+            <img src="" alt="liste tshirt" class="modifImgListe" />
+            <span class="nomImgListe"></span>
+            <!--
+                     <form class="my_form2" method="post" action="Controller/process_form.php" enctype="multipart/form-data">
+                            <input type="file" name="image" accept="image/*">
+                            <button type="submit">OK</button>
+                        </form>
+            -->
+
         </figure>
         <figure>
             <img src="" alt="details tshirt" class="modifImgDetail" />
             <span class="nomImgDetail"></span>
-<!--
-             <form class="my_form" method="post" action="Controller/process_form.php" enctype="multipart/form-data">
-                <input type="file" name="image" accept="image/*">
-                <button type="submit">OK</button>
-            </form>
--->
-    </figure>
-       </div>
+            <!--
+                         <form class="my_form" method="post" action="Controller/process_form.php" enctype="multipart/form-data">
+                            <input type="file" name="image" accept="image/*">
+                            <button type="submit">OK</button>
+                        </form>
+            -->
+        </figure>
+    </div>
     <div class="formDetail">
         <label>Nom:</label>
         <input type="text" name="nom" value="" class="modifNom" />
@@ -124,6 +137,9 @@
         <input type="text" name="tailleXL" value="" class="modifXL" />
         <br/>
     </div>
-<input type="button" value="sauvegarder" name="sauvegarder" class="modifSauvegarder"/>
-<input type="button" value="annuler" name="annuler" class="modifAnnuler"/>
+    <input type="button" value="sauvegarder" name="sauvegarder" class="modifSauvegarder"/>
+    <input type="button" value="annuler" name="annuler" class="modifAnnuler"/>
 </div>
+<div class="divModifImages"><input type="button" value="Gallerie d'images"></div>
+
+

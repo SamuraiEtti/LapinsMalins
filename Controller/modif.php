@@ -5,6 +5,7 @@ require_once('ModelController.php');
 require_once('../Classes/TShirt.php');
 
 $op = $_GET['op'];
+
 switch ($op) {
     case "affichage":
         header("Content-type: text/json;charset=utf8");
@@ -52,7 +53,28 @@ switch ($op) {
             echo $key;
             echo $idModel;
         }
+        break;
+    case "listeImg":
+        header("Content-type: text/json;charset=utf8");
+        $folder_path = '../images/tshirt/'; //image's folder path
 
+        $num_files = glob($folder_path . "*.{png, JPG, jpg, bmp}", GLOB_BRACE);
 
+        $folder = opendir($folder_path);
+        $liste = [];
+
+        if ($num_files > 0) {
+            while (false !== ($file = readdir($folder))) {
+                $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                if ($extension == 'png' || $extension == "JPG" || $extension == "jpg" || $extension == "bmp") {
+                    $liste[] = $file;
+                }
+            }
+            echo json_encode($liste);
+        } else {
+            echo "Pas encore d'images";
+        }
+
+        closedir($folder);
         break;
 }
