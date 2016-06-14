@@ -54,9 +54,18 @@
        <div class="imgDetail">
     <figure>
         <img src="" alt="liste tshirt" class="modifImgListe" />
-    </figure>
-    <figure>
-        <img src="" alt="details tshirt" class="modifImgDetail" />
+         <form class="my_form2" method="post" action="Controller/process_form.php" enctype="multipart/form-data">
+                <input type="file" name="image" accept="image/*">
+                <button type="submit">OK</button>
+            </form>
+           
+        </figure>
+        <figure>
+            <img src="" alt="details tshirt" id="ajoutImgDetail" />
+             <form class="my_form" method="post" action="Controller/process_form.php" enctype="multipart/form-data">
+                <input type="file" name="image" accept="image/*">
+                <button type="submit">OK</button>
+            </form>
     </figure>
        </div>
     <div class="formDetail">

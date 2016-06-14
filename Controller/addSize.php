@@ -3,10 +3,10 @@
 require_once 'ModelController.php';
 
 $sizes = [];
-$small = $_POST["small"];
-$medium = $_POST['medium'];
-$large = $_POST['large'];
-$xlarge = $_POST['xlarge'];
+$small = isset($_POST["small"]) ? $_POST["small"]:"0";
+$medium = isset($_POST['medium'])? $_POST["medium"]:"0";
+$large = isset($_POST['large']) ? $_POST["large"]:"0";
+$xlarge = isset($_POST['xlarge']) ? $_POST["xlarge"]:"0";
 $teeId = $_POST['tee_id'];
 $sizes[1] = $small;
 $sizes[2] = $medium;

@@ -1,7 +1,6 @@
 <style>
     #divAjout {
         border: 1px black solid;
-
     }
     
     .formDetail {
@@ -24,7 +23,6 @@
     }
     
     .imgDetail {
-     
         display: inline-block;
         margin: auto;
     }
@@ -63,16 +61,27 @@
         border-radius: 50%;
         margin-right: 80px;
     }
-
+    #my_form{
+        border:1px black solid;
+    }
 </style>
 <div id="divAjout">
-<!--    <input type="button" value="-" name="retour" id="retourListeAjout" />-->
+    <!--    <input type="button" value="-" name="retour" id="retourListeAjout" />-->
     <div class="imgDetail">
         <figure>
             <img src="" alt="liste tshirt" id="ajoutImgListe" />
+            <form id="my_form" method="post" action="Controller/process_form.php" enctype="multipart/form-data">
+                <input type="file" name="image" accept="image/*">
+                <button type="submit">OK</button>
+            </form>
+           
         </figure>
         <figure>
             <img src="" alt="details tshirt" id="ajoutImgDetail" />
+             <form id="my_form2" method="post" action="Controller/process_form.php" enctype="multipart/form-data">
+                <input type="file" name="image" accept="image/*">
+                <button type="submit">OK</button>
+            </form>
         </figure>
     </div>
     <div class="formDetail">
