@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/E:/Users/internet12/Ste-internet_2016/LapinsMalins/Controller/modif.php</file>
+            <file>file:/E:/Users/internet12/Ste-internet_2016/LapinsMalins/Adapter/DBConnection.php</file>
             <file>file:/E:/Users/internet12/Ste-internet_2016/LapinsMalins/Controller/addSize.php</file>
-            <file>file:/E:/Users/internet12/Ste-internet_2016/LapinsMalins/Adapter/ModelAdapter.php</file>
+            <file>file:/E:/Users/internet12/Ste-internet_2016/LapinsMalins/Classes/TShirt.php</file>
+            <file>file:/E:/Users/internet12/Ste-internet_2016/LapinsMalins/Adapter/TShirtAdapter.php</file>
             <file>file:/E:/Users/internet12/Ste-internet_2016/LapinsMalins/Controller/ModelController.php</file>
+            <file>file:/E:/Users/internet12/Ste-internet_2016/LapinsMalins/Controller/TShirtController.php</file>
         </group>
     </open-files>
 </project-private>
