@@ -63,10 +63,15 @@
         display: flex;
         flex-direction: row;
         overflow-x: scroll;
+        overflow-y: hidden;
     }
     .listeImages img {
         height: 150px;
         flex: 1;
+        display: block;
+    }
+    .ui-draggable-dragging {
+        height: 150px;
     }
 </style>
 <div class="divModif">
@@ -102,7 +107,7 @@
         <input type="text" name="prix" value="" class="modifPrix" />
         <br/>
         <label>Date:</label>
-        <input type="text" name="date" value="" class="modifDate" />
+        <input type="date" name="date" value="" class="modifDate" />
         <br/>
         <label>Description</label>
         <textarea name="desciption" class="modifDescription"></textarea>

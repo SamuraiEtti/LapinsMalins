@@ -8,7 +8,7 @@ $(function () {
     $(document).on("submit", "#my_form2", envoyerImage);
     $(document).on("submit", ".my_form", envoyerImage);
     $(document).on("submit", ".my_form2", envoyerImage);
-    $(document).on("click", ".divModifImages", allImages);
+    $(document).on("click", ".divModifImages input", allImages);
 
     function listeTeeshirt() {
         $.ajax("Controller/listeTeeshirt.php", {
@@ -61,7 +61,7 @@ $(function () {
         var $li = $(e.target).parent();
         var $number = $li.attr("data-id");
         console.log($number);
-        if (!$("li[data-id=" + $number + "] .modifForm").length) {
+        if (!$("li[data-id=" + $number + "] .modifForm").length || $("li[data-id=" + $number + "] .modifForm").attr("class") == "modified" ) {
             $(".modifForm").remove();
             $("<div/>").attr('class', "modifForm").appendTo($li);
         } else {
@@ -95,9 +95,17 @@ $(function () {
                         $("li[data-id=" + $number + "] .modifXL").val(data[0]["t_xlarge"]);
                         //                    $("li[data-id=" + $number + "] .my_form input").val(data[0]["imgDetails"]);
                         //                    $("li[data-id=" + $number + "] .my_form2 input").val(data[0]["imgListe"]);
-                        $("li[data-id=" + $number + "] .modifImgDetail").attr("src", "images/tshirt/" + data[0]["imgDetails"]);
+                        $("li[data-id=" + $number + "] .modifImgDetail").attr("src", "images/tshirt/" + data[0]["imgDetails"]).droppable({
+                            accept: 'img',
+                            hoverClass: 'hovered',
+                            drop: handleCardDrop
+                        });
                         $("li[data-id=" + $number + "] .nomImgDetail").text(data[0]["imgDetails"]);
-                        $("li[data-id=" + $number + "] .modifImgListe").attr("src", "images/tshirt/" + data[0]["imgListe"]);
+                        $("li[data-id=" + $number + "] .modifImgListe").attr("src", "images/tshirt/" + data[0]["imgListe"]).droppable({
+                            accept: 'img',
+                            hoverClass: 'hovered',
+                            drop: handleCardDrop
+                        });
                         $("li[data-id=" + $number + "] .nomImgListe").text(data[0]["imgListe"]);
                     }, 150);
                 })
@@ -215,8 +223,15 @@ $(function () {
                 success: function (data, status, xhr) {
                     $("<div/>").attr("class", "listeImages").appendTo($(".divModifImages"));
                     for (var i = 0; i < data.length; i++) {
-                        console.log(data[i]);
-                        $(".listeImages").append($("<img>").attr("src", "images/tshirt/" + data[i]));
+                        $(".listeImages").append($("<img>").attr("src", "images/tshirt/" + data[i]).draggable({
+                            containment: '.modifForm',
+                            scroll: false,
+                            helper: 'clone',
+                            appendTo: 'body',
+                            opacity: 0.5,
+                            cursor: 'move',
+                            revert: true
+                        }));
                     }
                 }
             })
@@ -224,11 +239,9 @@ $(function () {
     }
 
     function modifier(e) {
-        console.log("ca passeé");
-        //recupere le li
         var $papa = $(e.target).parent().parent().parent();
         var $idLi = $papa.attr("data-id");
-        console.log($idLi);
+        
         $.ajax("Controller/modif.php", {
             data: {
                 op: "modif",
@@ -249,7 +262,7 @@ $(function () {
             },
             success: function (data, status, xhr) {
                 console.log("succes!");
-                $("li[data-id=" + $idLi + "] .divModif").html("  modifié");
+                $("li[data-id=" + $idLi + "] .modifForm").html("modifié").attr("class", "modified");
             },
             error: function () {
                 console.log(arguments);
@@ -279,9 +292,19 @@ $(function () {
             }
         });
     }
-    ;
-    // liste tous les tshirts une fois par défaut
 
+    function handleCardDrop(event, ui) {
+        console.log(event);
+
+        console.log(ui.draggable.attr("src"));
+        $(this).attr("src", ui.draggable.attr("src"));
+        var texte = ui.draggable.attr("src").split("/");
+        var nom = texte.pop();
+        $(this).next("span").text(nom);
+    }
+    
+    
+    // liste tous les tshirts une fois par défaut
     listeTeeshirt();
 
 
