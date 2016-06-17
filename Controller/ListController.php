@@ -59,5 +59,20 @@ class ListController {
         $listMat = $listAd->listAllMatters();
         return $listMat;
     }
+    function addCat($cat){
+         $connect = DBConnection::getInstance();
+        $listAd = new CategoryAdapter($connect);
+        $listAd->addCat($cat);
+    }
+    function addMat($mat){
+          $connect = DBConnection::getInstance();
+        $listAd = new MatterAdapter($connect);
+        $listAd->addMat($mat);
+    }
+        function addCrea($crea){
+          $connect = DBConnection::getInstance();
+        $listAd = new CreatorAdapter($connect);
+        $listAd->addCrea($crea);
+    }
 
 }

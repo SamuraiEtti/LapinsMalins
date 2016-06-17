@@ -3,7 +3,7 @@
 require_once 'TShirtController.php';
 require_once('ModelController.php');
 require_once('../Classes/TShirt.php');
-
+require_once('ListController.php');
 $op = $_GET['op'];
 
 switch ($op) {
@@ -76,5 +76,22 @@ switch ($op) {
         }
 
         closedir($folder);
+        break;
+    case"addCat":
+        $catEnvoyee=$_GET["cat"];
+        $lc=new ListController();
+        $lc->addCat($catEnvoyee);
+        break;
+    
+    case "addMat":
+         $matEnvoyee=$_GET["mat"];
+        $lc=new ListController();
+        $lc->addMat($matEnvoyee);
+        break;
+        
+     case "addCrea":
+         $creaEnvoyee=$_GET["crea"];
+        $lc=new ListController();
+        $lc->addCrea($creaEnvoyee);
         break;
 }

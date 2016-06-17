@@ -57,6 +57,15 @@ class CategoryAdapter {
         }
         return $this->list;
     }
+    function addCat($param){
+         if (!$this->complete) {
+            $sql = "INSERT INTO categories "
+                    . "VALUES (default,:nom) ";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([":nom"=>$param]);
+            $this->complete = true;
+        }
+    }
 
 }
 
@@ -69,7 +78,15 @@ class CreatorAdapter {
     function __construct(PDO $pdo) {
         $this->pdo = $pdo;
     }
-
+function addCrea($crea){
+     if (!$this->complete) {
+            $sql = "INSERT INTO createurs "
+                    . "VALUES (default,:nom) ";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([":nom"=>$crea]);
+            $this->complete = true;
+        }
+}
     function listAllCreators() {
         if (!$this->complete) {
             $sql = "SELECT cre_id AS id,"
@@ -122,7 +139,15 @@ class MatterAdapter {
     function __construct(PDO $pdo) {
         $this->pdo = $pdo;
     }
-
+function addMat($mat){
+     if (!$this->complete) {
+            $sql = "INSERT INTO matieres "
+                    . "VALUES (default,:nom) ";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([":nom"=>$mat]);
+            $this->complete = true;
+        }
+}
     function listAllMatters() {
         if (!$this->complete) {
             $sql = "SELECT mat_id AS id,"
